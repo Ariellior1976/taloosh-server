@@ -1,0 +1,2918 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="תלוש חכם — בדיקת שכר וזכויות עובדי הוראה בישראל">
+<meta name="theme-color" content="#07111F">
+<title>תלוש חכם | בדיקת שכר וזכויות מורים</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07111F;--deep:#0D1B2A;--panel:#0F2035;--card:#112238;
+  --teal:#00C8E8;--teal2:#0092B8;--teal-glow:rgba(0,200,232,.12);
+  --gold:#FFD166;--gold2:#E8A800;--gold-glow:rgba(255,209,102,.10);
+  --green:#22D97A;--red:#FF4D6A;--orange:#FF8A3D;--purple:#A78BFA;
+  --white:#EFF6FF;--muted:#6B8299;--border:rgba(0,200,232,.14);
+  --font:'Rubik',sans-serif;--r:14px;--rs:9px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--white);
+  direction:rtl;overflow-x:hidden;min-height:100vh}
+a{color:inherit;text-decoration:none}
+
+/* ── AMBIENT ── */
+.ambient{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 70% 45% at 15% 5%,rgba(0,200,232,.06) 0,transparent 60%),
+    radial-gradient(ellipse 50% 50% at 85% 85%,rgba(255,209,102,.04) 0,transparent 60%)}
+#ptcl{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.pt{position:absolute;border-radius:50%;animation:ptRise linear infinite}
+@keyframes ptRise{0%{transform:translateY(110vh);opacity:0}10%{opacity:.5}90%{opacity:.1}100%{transform:translateY(-10vh);opacity:0}}
+
+/* ── SCROLL BAR ── */
+.sbar{position:fixed;top:0;left:0;right:0;height:3px;z-index:1000;background:rgba(0,200,232,.08)}
+.sbar-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--gold));width:0%;transition:width .08s}
+
+/* ── NAV ── */
+nav{position:fixed;top:3px;inset-inline:0;z-index:500;height:62px;
+  display:flex;align-items:center;gap:1rem;padding:0 1.6rem;
+  background:rgba(7,17,31,.92);backdrop-filter:blur(24px) saturate(1.4);
+  border-bottom:1px solid var(--border);transition:box-shadow .3s}
+nav.sh{box-shadow:0 4px 40px rgba(0,0,0,.5)}
+.brand{display:flex;align-items:center;gap:.55rem;cursor:pointer;flex-shrink:0}
+.brand-icon{width:38px;height:38px;border-radius:11px;
+  background:linear-gradient(135deg,var(--teal),var(--teal2));
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;font-weight:900;color:var(--bg);
+  box-shadow:0 0 18px rgba(0,200,232,.4)}
+.brand-name{font-size:1.15rem;font-weight:800;letter-spacing:-.3px}
+.brand-name b{color:var(--teal)}
+.nav-tabs{display:flex;gap:.15rem;overflow-x:auto;flex:1;
+  scrollbar-width:none;-ms-overflow-style:none}
+.nav-tabs::-webkit-scrollbar{display:none}
+.ntab{background:none;border:none;color:var(--muted);padding:.38rem .75rem;
+  border-radius:8px;cursor:pointer;font-family:var(--font);font-size:.78rem;
+  font-weight:500;white-space:nowrap;transition:all .18s}
+.ntab:hover,.ntab.on{background:var(--teal-glow);color:var(--teal)}
+.nav-r{display:flex;align-items:center;gap:.6rem;flex-shrink:0}
+.lang-sel{background:var(--teal-glow);border:1px solid var(--border);
+  color:var(--white);padding:.3rem .6rem;border-radius:8px;
+  font-family:var(--font);font-size:.75rem;cursor:pointer;outline:none}
+.lang-sel option{background:var(--deep)}
+.nav-cta{background:linear-gradient(135deg,var(--teal),var(--teal2));
+  color:var(--bg);border:none;padding:.45rem 1.1rem;border-radius:9px;
+  font-weight:800;font-size:.82rem;font-family:var(--font);cursor:pointer;
+  box-shadow:0 0 16px rgba(0,200,232,.3);transition:all .2s;white-space:nowrap}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 24px rgba(0,200,232,.5)}
+
+/* ── PAGES ── */
+.pg{display:none;position:relative;z-index:1;padding-top:65px;min-height:100vh}
+.pg.on{display:block}
+
+/* ════════════════════════
+   HOME
+════════════════════════ */
+.hero{min-height:calc(100vh - 65px);display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;
+  padding:5rem 1.2rem 3rem}
+.hero-pill{display:inline-flex;align-items:center;gap:.45rem;
+  background:var(--teal-glow);border:1px solid var(--border);
+  color:var(--teal);padding:.32rem 1rem;border-radius:100px;
+  font-size:.75rem;font-weight:700;letter-spacing:.05em;margin-bottom:1.6rem;
+  animation:fu .7s ease both}
+.ldot{width:7px;height:7px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 0 0 rgba(34,217,122,.5);animation:lp 1.8s infinite}
+@keyframes lp{0%,100%{box-shadow:0 0 0 0 rgba(34,217,122,.5)}50%{box-shadow:0 0 0 7px rgba(34,217,122,0)}}
+.hero h1{font-size:clamp(2.4rem,7vw,4.8rem);font-weight:900;line-height:1.05;
+  margin-bottom:1.2rem;animation:fu .75s .1s ease both}
+.hero h1 em{font-style:normal;
+  background:linear-gradient(100deg,var(--teal) 0%,#7FFFD4 40%,var(--gold) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  background-size:200%;animation:sh 5s linear infinite}
+@keyframes sh{0%{background-position:0%}100%{background-position:200%}}
+.hero-p{font-size:clamp(.95rem,2.2vw,1.15rem);color:var(--muted);
+  max-width:600px;line-height:1.75;margin:0 auto 2.4rem;
+  animation:fu .8s .2s ease both}
+.hero-btns{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;
+  animation:fu .8s .3s ease both}
+.btn-p{background:linear-gradient(135deg,var(--teal),var(--teal2));
+  color:var(--bg);border:none;padding:.9rem 1.9rem;border-radius:13px;
+  font-size:1rem;font-weight:900;cursor:pointer;font-family:var(--font);
+  box-shadow:0 6px 28px rgba(0,200,232,.4);transition:all .22s;
+  display:flex;align-items:center;gap:.45rem}
+.btn-p:hover{transform:translateY(-3px);box-shadow:0 10px 40px rgba(0,200,232,.55)}
+.btn-s{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,.14);
+  padding:.9rem 1.7rem;border-radius:13px;font-size:.95rem;font-weight:600;
+  cursor:pointer;font-family:var(--font);transition:all .22s}
+.btn-s:hover{border-color:var(--teal);color:var(--teal);background:var(--teal-glow)}
+
+.metrics-row{display:flex;background:var(--card);border:1px solid var(--border);
+  border-radius:18px;overflow:hidden;flex-wrap:wrap;margin-top:3.5rem;
+  max-width:860px;width:100%;animation:fu .8s .45s ease both}
+.metric{flex:1;min-width:130px;padding:1.3rem .8rem;text-align:center;
+  border-left:1px solid var(--border)}
+.metric:last-child{border-left:none}
+.mv{font-size:1.75rem;font-weight:900;color:var(--teal);line-height:1}
+.ml{font-size:.68rem;color:var(--muted);margin-top:.25rem;font-weight:500}
+
+.home-features{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:1.1rem;max-width:1180px;margin:0 auto;padding:0 1.2rem 5rem}
+.hf{background:var(--card);border:1px solid var(--border);border-radius:var(--r);
+  padding:1.6rem;cursor:pointer;transition:all .22s;position:relative;overflow:hidden}
+.hf::before{content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,var(--teal-glow),transparent);
+  opacity:0;transition:.3s;pointer-events:none}
+.hf:hover::before{opacity:1}
+.hf:hover{border-color:var(--teal);transform:translateY(-3px);
+  box-shadow:0 14px 44px rgba(0,200,232,.12)}
+.hf-icon{width:50px;height:50px;border-radius:13px;background:var(--teal-glow);
+  border:1px solid var(--border);display:flex;align-items:center;
+  justify-content:center;font-size:1.45rem;margin-bottom:1rem}
+.hf h3{font-size:.95rem;font-weight:700;margin-bottom:.4rem}
+.hf p{font-size:.8rem;color:var(--muted);line-height:1.6}
+.hf-arr{color:var(--teal);font-size:.75rem;font-weight:700;margin-top:.8rem;
+  opacity:0;transform:translateX(6px);transition:.22s}
+.hf:hover .hf-arr{opacity:1;transform:translateX(0)}
+
+@keyframes fu{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+/* ════════════════════════
+   CHAT
+════════════════════════ */
+.chat-pg{display:flex;height:calc(100vh - 65px);overflow:hidden}
+.chat-aside{width:260px;background:var(--deep);border-left:1px solid var(--border);
+  display:flex;flex-direction:column;flex-shrink:0}
+.aside-top{padding:1rem 1rem .8rem;border-bottom:1px solid var(--border)}
+.aside-top h3{font-size:.82rem;font-weight:700;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.08em;margin-bottom:.7rem}
+.mode-list{display:flex;flex-direction:column;gap:.3rem}
+.mnode{background:none;border:1px solid transparent;color:var(--muted);
+  padding:.55rem .8rem;border-radius:var(--rs);cursor:pointer;
+  font-family:var(--font);font-size:.78rem;text-align:right;
+  display:flex;align-items:center;gap:.5rem;transition:.18s}
+.mnode:hover,.mnode.on{background:var(--teal-glow);border-color:var(--border);color:var(--teal)}
+.mnode-ic{font-size:.95rem;flex-shrink:0}
+.aside-hist{flex:1;overflow-y:auto;padding:.8rem;
+  scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+.hist-label{font-size:.67rem;color:var(--muted);padding:.2rem .4rem;
+  text-transform:uppercase;letter-spacing:.08em;margin-bottom:.3rem}
+.hist-item{display:flex;align-items:center;gap:.45rem;padding:.5rem .6rem;
+  border-radius:var(--rs);cursor:pointer;font-size:.75rem;color:var(--muted);
+  transition:.16s;border:1px solid transparent}
+.hist-item:hover{background:var(--teal-glow);color:var(--white);border-color:var(--border)}
+
+.chat-main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
+.chat-bar{padding:.75rem 1.2rem;border-bottom:1px solid var(--border);
+  background:rgba(13,27,42,.85);backdrop-filter:blur(12px);
+  display:flex;align-items:center;gap:.8rem}
+.ag-av{width:40px;height:40px;border-radius:11px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--teal),var(--teal2));
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;font-weight:900;color:var(--bg);
+  box-shadow:0 0 14px rgba(0,200,232,.35)}
+.ag-inf h4{font-size:.88rem;font-weight:700}
+.ag-inf p{font-size:.7rem;color:var(--teal)}
+.ag-live{display:flex;align-items:center;gap:.3rem;font-size:.7rem;
+  color:var(--green);margin-right:auto}
+.ldot2{width:6px;height:6px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 6px var(--green);animation:lp 2s infinite}
+
+.ctx-bar{padding:.45rem 1.2rem;border-bottom:1px solid rgba(0,200,232,.06);
+  background:rgba(0,200,232,.025);display:flex;gap:.4rem;align-items:center;flex-wrap:wrap}
+.ctx-t{background:var(--teal-glow);border:1px solid var(--border);
+  color:var(--teal);padding:.16rem .55rem;border-radius:100px;font-size:.67rem;font-weight:600}
+.ctx-cl{background:none;border:1px solid rgba(255,77,106,.18);color:var(--red);
+  padding:.16rem .55rem;border-radius:100px;font-size:.67rem;font-weight:600;
+  cursor:pointer;margin-right:auto}
+
+.msgs{flex:1;overflow-y:auto;padding:1rem 1.2rem;
+  display:flex;flex-direction:column;gap:.8rem;
+  scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+.msg{display:flex;gap:.55rem;align-items:flex-end;animation:mi .3s ease}
+.msg.u{flex-direction:row-reverse}
+@keyframes mi{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.mav{width:32px;height:32px;border-radius:9px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:.85rem}
+.msg.b .mav{background:linear-gradient(135deg,var(--teal),var(--teal2));color:var(--bg)}
+.msg.u .mav{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--bg)}
+.mwrap{max-width:80%}
+.bub{padding:.72rem 1rem;border-radius:14px;font-size:.855rem;line-height:1.62}
+.msg.b .bub{background:rgba(0,200,232,.08);border:1px solid var(--border);
+  border-bottom-right-radius:3px}
+.msg.u .bub{background:linear-gradient(135deg,var(--teal),var(--teal2));
+  color:var(--bg);font-weight:500;border-bottom-left-radius:3px}
+.mmeta{font-size:.62rem;color:var(--muted);margin-top:.22rem}
+.msg.u .mmeta{text-align:right}
+
+.qrs{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.45rem}
+.qr{background:none;border:1px solid var(--border);color:var(--teal);
+  padding:.3rem .75rem;border-radius:100px;font-size:.75rem;
+  cursor:pointer;font-family:var(--font);transition:.16s;white-space:nowrap}
+.qr:hover{background:var(--teal-glow)}
+.qr:disabled{opacity:.4;cursor:default}
+
+.typwrap{display:flex;gap:.55rem;align-items:flex-end}
+.typbub{padding:.7rem .95rem;background:rgba(0,200,232,.08);
+  border:1px solid var(--border);border-radius:14px;border-bottom-right-radius:3px;
+  display:flex;gap:4px;align-items:center}
+.td{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:tdb 1.2s infinite}
+.td:nth-child(2){animation-delay:.2s}.td:nth-child(3){animation-delay:.4s}
+@keyframes tdb{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-6px)}}
+
+/* RICH COMPONENTS in chat */
+.rcard{background:var(--panel);border:1px solid var(--border);
+  border-radius:12px;margin-top:.5rem;overflow:hidden;font-size:.82rem}
+.rcard-head{padding:.65rem .9rem;background:rgba(0,200,232,.07);
+  border-bottom:1px solid var(--border);font-weight:700;
+  display:flex;align-items:center;gap:.5rem}
+.rcard-body{padding:.8rem .9rem}
+.rrow{display:flex;align-items:center;gap:.55rem;padding:.42rem 0;
+  border-bottom:1px solid rgba(255,255,255,.04);font-size:.79rem}
+.rrow:last-child{border:none}
+.rlbl{flex:1;color:var(--muted)}
+.rval{font-weight:700}
+.ok{color:var(--green)}.warn{color:var(--orange)}.err{color:var(--red)}.inf{color:var(--teal)}
+.rbadge{padding:.12rem .48rem;border-radius:100px;font-size:.63rem;font-weight:700}
+.bOk{background:rgba(34,217,122,.1);border:1px solid rgba(34,217,122,.25);color:var(--green)}
+.bWarn{background:rgba(255,138,61,.1);border:1px solid rgba(255,138,61,.25);color:var(--orange)}
+.bErr{background:rgba(255,77,106,.1);border:1px solid rgba(255,77,106,.25);color:var(--red)}
+
+.alrt{border-radius:11px;padding:.8rem 1rem;margin-top:.45rem;
+  display:flex;gap:.6rem;align-items:flex-start;font-size:.79rem;line-height:1.55}
+.alrt.aw{background:rgba(255,138,61,.08);border:1px solid rgba(255,138,61,.22)}
+.alrt.aok{background:rgba(34,217,122,.07);border:1px solid rgba(34,217,122,.22)}
+.alrt.ae{background:rgba(255,77,106,.08);border:1px solid rgba(255,77,106,.22)}
+.alrt.ai{background:var(--teal-glow);border:1px solid var(--border)}
+.alrt-ic{font-size:1rem;flex-shrink:0;margin-top:.05rem}
+.alrt-b h5{font-size:.79rem;font-weight:700;margin-bottom:.18rem}
+.alrt-b p{color:var(--muted)}
+
+/* INPUT */
+.inp-area{border-top:1px solid var(--border);padding:.8rem 1rem;
+  background:rgba(13,27,42,.7);backdrop-filter:blur(10px)}
+.up-prev{display:none;align-items:center;gap:.5rem;
+  background:var(--teal-glow);border:1px solid var(--border);
+  border-radius:8px;padding:.42rem .75rem;margin-bottom:.55rem;font-size:.75rem}
+.up-prev.show{display:flex}
+.up-nm{flex:1;font-weight:600}
+.up-rm{background:none;border:none;color:var(--red);cursor:pointer;font-size:.95rem}
+.inp-row{display:flex;gap:.5rem;align-items:flex-end}
+.cinp{flex:1;background:rgba(0,200,232,.05);border:1px solid var(--border);
+  color:var(--white);padding:.65rem .9rem;border-radius:11px;
+  font-family:var(--font);font-size:.855rem;resize:none;outline:none;
+  min-height:44px;max-height:120px;direction:rtl;transition:border-color .2s}
+.cinp::placeholder{color:var(--muted)}
+.cinp:focus{border-color:var(--teal)}
+.ibtn{width:44px;height:44px;border-radius:10px;border:none;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.05rem;cursor:pointer;transition:.18s;flex-shrink:0}
+.ibtn-at{background:var(--gold-glow);border:1px solid rgba(255,209,102,.18);color:var(--gold)}
+.ibtn-at:hover{background:rgba(255,209,102,.18)}
+.ibtn-sn{background:linear-gradient(135deg,var(--teal),var(--teal2));color:var(--bg)}
+.ibtn-sn:hover{transform:scale(1.07);box-shadow:0 0 16px rgba(0,200,232,.4)}
+.ibtn-sn:disabled{opacity:.45;transform:none;cursor:default}
+#fi{display:none}
+
+/* ════════════════════════
+   CALCULATOR
+════════════════════════ */
+.inner{max-width:1020px;margin:0 auto;padding:2rem 1.2rem 5rem}
+.ph{padding:2rem 0 1.6rem;text-align:center}
+.ph h2{font-size:clamp(1.75rem,4vw,2.5rem);font-weight:900;margin-bottom:.4rem}
+.ph h2 em{font-style:normal;color:var(--teal)}
+.ph p{color:var(--muted);font-size:.9rem}
+.sbadge{display:inline-flex;align-items:center;gap:.35rem;
+  background:var(--gold-glow);border:1px solid rgba(255,209,102,.18);
+  color:var(--gold);padding:.25rem .8rem;border-radius:100px;
+  font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.4rem}
+
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+@media(max-width:680px){.cgrid{grid-template-columns:1fr}}
+.cpanel{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.4rem}
+.cpanel h3{font-size:.9rem;font-weight:700;margin-bottom:1rem;
+  display:flex;align-items:center;gap:.45rem}
+.fg{margin-bottom:.9rem}
+.fg label{display:block;font-size:.7rem;font-weight:600;color:var(--muted);
+  margin-bottom:.35rem;text-transform:uppercase;letter-spacing:.06em}
+.fc{width:100%;background:rgba(0,200,232,.04);border:1px solid var(--border);
+  color:var(--white);padding:.6rem .85rem;border-radius:var(--rs);
+  font-family:var(--font);font-size:.845rem;outline:none;
+  transition:border-color .2s;direction:rtl}
+.fc:focus{border-color:var(--teal)}
+.fc option{background:var(--deep)}
+.rng-wrap{display:flex;align-items:center;gap:.7rem}
+.rng{flex:1;accent-color:var(--teal);cursor:pointer}
+.rval{font-weight:700;color:var(--teal);min-width:36px;
+  text-align:center;font-size:.88rem}
+.cbtn{width:100%;background:linear-gradient(135deg,var(--teal),var(--teal2));
+  color:var(--bg);border:none;padding:.85rem;border-radius:11px;
+  font-weight:900;font-size:.95rem;cursor:pointer;font-family:var(--font);
+  margin-top:.4rem;transition:all .2s;box-shadow:0 4px 18px rgba(0,200,232,.28)}
+.cbtn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,200,232,.48)}
+
+.rpanel{background:var(--panel);border:1px solid var(--border);
+  border-radius:var(--r);padding:1.4rem;grid-column:1/-1;display:none}
+.rp-head{display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:1.2rem;flex-wrap:wrap;gap:.8rem}
+.rp-head h3{font-size:.95rem;font-weight:700;display:flex;align-items:center;gap:.4rem}
+.net-badge{background:linear-gradient(135deg,var(--teal-glow),var(--gold-glow));
+  border:1px solid var(--border);padding:.55rem 1.2rem;border-radius:11px;text-align:center}
+.nb-val{font-size:1.8rem;font-weight:900;color:var(--teal);line-height:1}
+.nb-lbl{font-size:.66rem;color:var(--muted);margin-top:.1rem}
+.bg{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.9rem;margin-bottom:1.2rem}
+.bi{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.055);
+  border-radius:11px;padding:.9rem}
+.bilbl{font-size:.68rem;color:var(--muted);margin-bottom:.35rem;font-weight:500}
+.bival{font-size:1.15rem;font-weight:800}
+.bisub{font-size:.67rem;color:var(--muted);margin-top:.15rem}
+.cbar-item{margin-bottom:.9rem}
+.cb-head{display:flex;justify-content:space-between;font-size:.74rem;margin-bottom:.25rem}
+.cb-track{background:rgba(255,255,255,.055);height:9px;border-radius:100px;overflow:hidden}
+.cb-fill{height:100%;border-radius:100px;transition:width 1.3s cubic-bezier(.4,0,.2,1)}
+.ded-r{display:flex;justify-content:space-between;align-items:center;
+  padding:.45rem 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:.8rem}
+.ded-r:last-child{border:none}
+.ded-n{color:var(--muted)}
+.ded-v.minus{color:var(--red)}.ded-v.plus{color:var(--green)}
+.net-r{background:linear-gradient(135deg,var(--teal-glow),var(--gold-glow));
+  border:1px solid var(--border);border-radius:11px;padding:.8rem 1rem;
+  display:flex;justify-content:space-between;align-items:center;margin-top:.9rem}
+.nr-lbl{font-size:.85rem;font-weight:700}
+.nr-val{font-size:1.4rem;font-weight:900;color:var(--teal)}
+
+/* ════════════════════════
+   ANALYZER
+════════════════════════ */
+.az-inner{max-width:940px;margin:0 auto;padding:2rem 1.2rem 5rem}
+.drop-z{border:2px dashed var(--border);border-radius:18px;
+  padding:3.2rem 1.5rem;text-align:center;cursor:pointer;
+  transition:all .3s;background:rgba(0,200,232,.015);position:relative}
+.drop-z:hover,.drop-z.ov{border-color:var(--teal);background:var(--teal-glow)}
+.drop-z input{position:absolute;inset:0;opacity:0;cursor:pointer;font-size:0}
+.dz-ic{font-size:3.2rem;margin-bottom:.8rem}
+.dz-t{font-size:1.1rem;font-weight:800;margin-bottom:.35rem}
+.dz-s{font-size:.8rem;color:var(--muted)}
+.dz-fmts{display:flex;gap:.45rem;justify-content:center;flex-wrap:wrap;margin-top:.9rem}
+.ftag{background:var(--card);border:1px solid var(--border);
+  padding:.22rem .65rem;border-radius:100px;font-size:.68rem;color:var(--muted);font-weight:600}
+.az-area{display:none;margin-top:1.3rem}
+.az-area.show{display:block}
+.az-prog{background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r);padding:1.2rem;margin-bottom:1.2rem}
+.psteps{display:flex;overflow:hidden;border-radius:8px;margin-top:.8rem}
+.ps{flex:1;padding:.45rem .2rem;text-align:center;font-size:.62rem;font-weight:700;
+  color:var(--muted);background:rgba(255,255,255,.025);
+  border-left:1px solid var(--border);transition:all .35s}
+.ps:last-child{border:none}
+.ps.dn{color:var(--green);background:rgba(34,217,122,.07)}
+.ps.ac{color:var(--teal);background:var(--teal-glow)}
+.full-rep{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.rep-hd{padding:1.1rem 1.4rem;background:linear-gradient(135deg,rgba(0,200,232,.07),transparent);
+  border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.7rem;flex-wrap:wrap}
+.rep-hd h3{font-size:.95rem;font-weight:800;flex:1}
+.rep-score{background:linear-gradient(135deg,var(--teal-glow),var(--gold-glow));
+  border:1px solid var(--border);padding:.38rem .9rem;border-radius:9px;text-align:center}
+.rs-val{font-size:1.2rem;font-weight:900;color:var(--teal)}
+.rs-lbl{font-size:.6rem;color:var(--muted)}
+.rep-bd{padding:1.2rem 1.4rem}
+.rep-sec{margin-bottom:1.7rem}
+.rsec-t{font-size:.68rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:.1em;color:var(--muted);margin-bottom:.7rem;
+  display:flex;align-items:center;gap:.35rem}
+.iss{background:var(--panel);border-radius:11px;padding:.9rem 1.1rem;
+  margin-bottom:.6rem;border-right:3px solid}
+.iss.ok{border-color:var(--green)}.iss.warn{border-color:var(--orange)}.iss.err{border-color:var(--red)}
+.iss-hd{display:flex;align-items:center;gap:.5rem;margin-bottom:.25rem}
+.iss-hd h4{font-size:.82rem;font-weight:700;flex:1}
+.iss-desc{font-size:.77rem;color:var(--muted);line-height:1.55}
+.iss-act{margin-top:.42rem;font-size:.72rem;color:var(--teal);font-weight:600}
+
+/* ════════════════════════
+   RIGHTS
+════════════════════════ */
+.rts-inner{max-width:1100px;margin:0 auto;padding:2rem 1.2rem 5rem}
+.rts-sb{display:flex;gap:.65rem;margin-bottom:1.6rem}
+.rts-inp{flex:1;background:var(--card);border:1px solid var(--border);
+  color:var(--white);padding:.7rem 1rem;border-radius:11px;
+  font-family:var(--font);font-size:.865rem;outline:none;direction:rtl}
+.rts-inp:focus{border-color:var(--teal)}
+.rts-inp::placeholder{color:var(--muted)}
+.rts-sbtn{background:var(--teal);color:var(--bg);border:none;
+  padding:.7rem 1.2rem;border-radius:11px;font-weight:700;cursor:pointer;font-family:var(--font)}
+.cats{display:flex;gap:.45rem;flex-wrap:wrap;margin-bottom:1.6rem}
+.cpill{background:var(--card);border:1px solid var(--border);color:var(--muted);
+  padding:.35rem .9rem;border-radius:100px;cursor:pointer;
+  font-size:.77rem;font-weight:500;font-family:var(--font);transition:.18s}
+.cpill:hover,.cpill.on{background:var(--teal-glow);border-color:var(--teal);color:var(--teal)}
+.rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.1rem}
+.rcard2{background:var(--card);border:1px solid var(--border);border-radius:var(--r);
+  padding:1.3rem;transition:.22s;cursor:pointer}
+.rcard2:hover{border-color:var(--teal);transform:translateY(-3px);
+  box-shadow:0 10px 32px rgba(0,200,232,.1)}
+.rcbadge{display:inline-block;padding:.15rem .6rem;border-radius:100px;
+  font-size:.65rem;font-weight:700;margin-bottom:.7rem}
+.cs{background:rgba(0,200,232,.1);border:1px solid rgba(0,200,232,.22);color:var(--teal)}
+.cp{background:rgba(34,217,122,.08);border:1px solid rgba(34,217,122,.22);color:var(--green)}
+.cl{background:rgba(255,209,102,.08);border:1px solid rgba(255,209,102,.22);color:var(--gold)}
+.ct{background:rgba(255,138,61,.08);border:1px solid rgba(255,138,61,.22);color:var(--orange)}
+.claw{background:rgba(255,77,106,.08);border:1px solid rgba(255,77,106,.22);color:var(--red)}
+.cu{background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.22);color:var(--purple)}
+.rcard2 h3{font-size:.88rem;font-weight:700;margin-bottom:.4rem}
+.rcard2 p{font-size:.78rem;color:var(--muted);line-height:1.58}
+.rc-more{color:var(--teal);font-size:.72rem;font-weight:600;
+  margin-top:.65rem;display:inline-flex;align-items:center;gap:.2rem}
+
+/* ════════════════════════
+   UPDATES
+════════════════════════ */
+.upd-inner{max-width:880px;margin:0 auto;padding:2rem 1.2rem 5rem}
+.ugrid{display:grid;gap:.9rem;margin-top:1.4rem}
+.ucard{background:var(--card);border:1px solid var(--border);border-radius:var(--r);
+  padding:1.3rem;transition:.2s;cursor:pointer}
+.ucard:hover{border-color:var(--teal)}
+.uc-hd{display:flex;align-items:center;gap:.7rem;margin-bottom:.7rem}
+.uc-dt{background:var(--panel);border:1px solid var(--border);padding:.22rem .65rem;
+  border-radius:7px;font-size:.68rem;font-weight:700;color:var(--teal);flex-shrink:0}
+.uc-hd h3{font-size:.9rem;font-weight:700;flex:1}
+.uc-tags{display:flex;gap:.35rem;flex-wrap:wrap}
+.utag{background:var(--teal-glow);border:1px solid var(--border);
+  color:var(--teal);padding:.13rem .52rem;border-radius:100px;font-size:.63rem;font-weight:600}
+.uc-body{font-size:.8rem;color:var(--muted);line-height:1.58;margin-top:.65rem}
+.uc-impact{margin-top:.65rem;padding:.55rem .85rem;
+  background:var(--gold-glow);border:1px solid rgba(255,209,102,.18);
+  border-radius:9px;font-size:.75rem;color:var(--gold)}
+
+/* ════════════════════════
+   LETTER MODAL
+════════════════════════ */
+.lovl{position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:800;
+  display:none;align-items:center;justify-content:center;padding:1.2rem}
+.lovl.op{display:flex}
+.lmod{background:var(--deep);border:1px solid var(--border);border-radius:18px;
+  max-width:680px;width:100%;max-height:88vh;display:flex;flex-direction:column}
+.lmod-hd{padding:1.2rem 1.4rem;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:.8rem;flex-shrink:0}
+.lmod-hd h3{font-size:1rem;font-weight:800;flex:1}
+.lmod-close{background:rgba(255,255,255,.06);border:none;color:var(--white);
+  width:30px;height:30px;border-radius:7px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center}
+.lmod-body{flex:1;overflow-y:auto;padding:1.2rem 1.4rem;
+  scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+.ltype-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1.2rem}
+.ltype-btn{background:var(--card);border:1px solid var(--border);color:var(--muted);
+  padding:.8rem 1rem;border-radius:var(--rs);cursor:pointer;
+  font-family:var(--font);font-size:.78rem;text-align:center;transition:.18s}
+.ltype-btn:hover,.ltype-btn.on{background:var(--teal-glow);border-color:var(--teal);color:var(--teal)}
+.letter-output{background:var(--panel);border:1px solid var(--border);border-radius:11px;
+  padding:1.2rem;font-size:.82rem;line-height:1.75;color:var(--white);
+  white-space:pre-wrap;direction:rtl;display:none;margin-top:.8rem;
+  min-height:200px}
+.letter-output.show{display:block}
+.lmod-ft{padding:.9rem 1.4rem;border-top:1px solid var(--border);
+  display:flex;gap:.6rem;flex-shrink:0}
+.lft-btn{flex:1;padding:.65rem;border-radius:9px;font-family:var(--font);
+  font-size:.8rem;font-weight:700;cursor:pointer;transition:.18s}
+.lft-btn.p{background:var(--teal);color:var(--bg);border:none}
+.lft-btn.s{background:none;border:1px solid var(--border);color:var(--muted)}
+.lft-btn.p:hover{box-shadow:0 0 14px rgba(0,200,232,.4)}
+
+/* ════════════════════════
+   PROFILE MODAL
+════════════════════════ */
+.provl{position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:800;
+  display:none;align-items:center;justify-content:center;padding:1.2rem}
+.provl.op{display:flex}
+.promod{background:var(--deep);border:1px solid var(--border);border-radius:18px;
+  max-width:560px;width:100%;max-height:88vh;overflow-y:auto;
+  scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+.pro-hd{padding:1.2rem 1.4rem;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:.8rem;position:sticky;top:0;
+  background:var(--deep);z-index:1}
+.pro-hd h3{font-size:1rem;font-weight:800;flex:1}
+.pro-body{padding:1.2rem 1.4rem}
+.pro-save{width:100%;background:linear-gradient(135deg,var(--teal),var(--teal2));
+  color:var(--bg);border:none;padding:.8rem;border-radius:10px;
+  font-weight:900;font-size:.92rem;cursor:pointer;font-family:var(--font);
+  margin-top:.4rem;transition:.2s}
+.pro-save:hover{box-shadow:0 0 20px rgba(0,200,232,.4)}
+
+/* ════════════════════════
+   RIGHTS MODAL
+════════════════════════ */
+.movl{position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:800;
+  display:none;align-items:center;justify-content:center;padding:1.2rem}
+.movl.op{display:flex}
+.mmod{background:var(--deep);border:1px solid var(--border);border-radius:18px;
+  max-width:620px;width:100%;max-height:88vh;overflow-y:auto;
+  scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+.mmod-hd{padding:1.2rem 1.4rem;border-bottom:1px solid var(--border);
+  display:flex;align-items:flex-start;gap:.8rem;position:sticky;top:0;
+  background:var(--deep);z-index:1}
+.mmod-hd h2{font-size:1.05rem;font-weight:800;flex:1}
+.mmod-cl{background:rgba(255,255,255,.06);border:none;color:var(--white);
+  width:30px;height:30px;border-radius:7px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center}
+.mmod-bd{padding:1.2rem 1.4rem}
+.mmod-bd h4{font-size:.7rem;font-weight:700;color:var(--teal);
+  text-transform:uppercase;letter-spacing:.07em;margin:1.1rem 0 .4rem}
+.mmod-bd p{font-size:.84rem;color:var(--muted);line-height:1.7;margin-bottom:.5rem}
+.mmod-bd ul{padding-right:1.1rem}
+.mmod-bd ul li{font-size:.82rem;color:var(--muted);line-height:1.65;margin-bottom:.28rem}
+.mmod-bd strong{color:var(--white);font-weight:700}
+.law-ref{background:rgba(255,209,102,.06);border:1px solid rgba(255,209,102,.18);
+  border-radius:9px;padding:.7rem .9rem;font-size:.76rem;color:var(--gold);margin-top:.7rem}
+.mmod-ft{padding:.9rem 1.4rem;border-top:1px solid var(--border);display:flex;gap:.6rem}
+.mft{flex:1;padding:.65rem;border-radius:9px;font-family:var(--font);
+  font-size:.78rem;font-weight:700;cursor:pointer;transition:.18s}
+.mft.p{background:var(--teal);color:var(--bg);border:none}
+.mft.s{background:none;border:1px solid var(--border);color:var(--muted)}
+
+/* ════════════════════════
+   TOAST
+════════════════════════ */
+.toast{position:fixed;bottom:1.8rem;left:50%;transform:translateX(-50%) translateY(80px);
+  z-index:999;background:var(--card);border:1px solid var(--border);
+  border-radius:12px;padding:.8rem 1.2rem;display:flex;align-items:center;
+  gap:.6rem;font-size:.8rem;font-weight:600;opacity:0;transition:all .32s;
+  box-shadow:0 12px 36px rgba(0,0,0,.45);white-space:nowrap;max-width:90vw}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+.toast.tok{border-color:rgba(34,217,122,.3);color:var(--green)}
+.toast.twarn{border-color:rgba(255,138,61,.3);color:var(--orange)}
+.toast.terr{border-color:rgba(255,77,106,.3);color:var(--red)}
+
+/* ════════════════════════
+   MOBILE
+════════════════════════ */
+@media(max-width:680px){
+  .chat-pg{flex-direction:column}
+  .chat-aside{width:100%;height:auto;flex-direction:row}
+  .aside-top{flex-shrink:0}
+  .mode-list{flex-direction:row;overflow-x:auto;gap:.25rem;padding:.3rem}
+  .mnode{white-space:nowrap;font-size:.72rem}
+  .aside-hist{display:none}
+  nav{padding:0 .9rem}
+  .brand-name{font-size:1rem}
+  .ltype-grid{grid-template-columns:1fr}
+}
+
+/* ── API KEY MODAL ── */
+.key-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;
+  display:flex;align-items:center;justify-content:center;padding:1.2rem;
+  backdrop-filter:blur(8px)}
+.key-modal{background:var(--deep);border:1px solid var(--border);border-radius:20px;
+  max-width:480px;width:100%;padding:2rem}
+.key-modal h2{font-size:1.2rem;font-weight:800;margin-bottom:.5rem}
+.key-modal p{font-size:.83rem;color:var(--muted);line-height:1.6;margin-bottom:1.2rem}
+.key-inp{width:100%;background:rgba(0,200,232,.05);border:1px solid var(--border);
+  color:var(--white);padding:.75rem 1rem;border-radius:10px;
+  font-family:var(--font);font-size:.85rem;outline:none;
+  direction:ltr;letter-spacing:.05em;margin-bottom:.8rem}
+.key-inp:focus{border-color:var(--teal)}
+.key-inp::placeholder{color:var(--muted);letter-spacing:0}
+.key-submit{width:100%;background:linear-gradient(135deg,var(--teal),var(--teal2));
+  color:var(--bg);border:none;padding:.85rem;border-radius:10px;
+  font-weight:900;font-size:.95rem;cursor:pointer;font-family:var(--font);
+  transition:.2s;margin-bottom:.6rem}
+.key-submit:hover{box-shadow:0 0 20px rgba(0,200,232,.4)}
+.key-note{font-size:.72rem;color:var(--muted);text-align:center;line-height:1.5}
+.key-note a{color:var(--teal)}
+.key-bar{display:flex;align-items:center;gap:.6rem;background:var(--teal-glow);
+  border:1px solid var(--border);border-radius:10px;padding:.6rem 1rem;
+  margin-bottom:.8rem;font-size:.78rem;cursor:pointer}
+.key-bar-txt{flex:1;color:var(--muted)}
+.key-bar-status{color:var(--green);font-weight:700}
+
+/* ── PAYSLIP UPLOAD IN CHAT ── */
+.upload-modal{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:700;
+  display:none;align-items:center;justify-content:center;padding:1.2rem}
+.upload-modal.open{display:flex}
+.upload-box{background:var(--deep);border:1px solid var(--border);border-radius:20px;
+  max-width:560px;width:100%;padding:0;overflow:hidden}
+.upload-box-head{padding:1.2rem 1.4rem;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:.7rem}
+.upload-box-head h3{font-size:.95rem;font-weight:800;flex:1}
+.upload-drop{border:2px dashed var(--border);border-radius:14px;
+  padding:2.5rem 1.5rem;text-align:center;cursor:pointer;
+  transition:.3s;margin:1.2rem 1.4rem;background:rgba(0,200,232,.02);
+  position:relative}
+.upload-drop:hover,.upload-drop.ov{border-color:var(--teal);background:var(--teal-glow)}
+.upload-drop input{position:absolute;inset:0;opacity:0;cursor:pointer;font-size:0}
+.upload-drop-ic{font-size:2.8rem;margin-bottom:.6rem}
+.upload-drop-t{font-size:.95rem;font-weight:700;margin-bottom:.3rem}
+.upload-drop-s{font-size:.78rem;color:var(--muted)}
+.upload-preview-area{padding:0 1.4rem 1.2rem;display:none}
+.upload-preview-area.show{display:block}
+.upload-file-info{background:var(--card);border:1px solid var(--border);
+  border-radius:10px;padding:.75rem 1rem;display:flex;align-items:center;gap:.7rem;
+  font-size:.82rem;margin-bottom:.8rem}
+.upload-file-icon{font-size:1.4rem}
+.upload-file-name{flex:1;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.upload-file-size{color:var(--muted);font-size:.72rem}
+.upload-analyze-btn{width:100%;background:linear-gradient(135deg,var(--teal),var(--teal2));
+  color:var(--bg);border:none;padding:.8rem;border-radius:10px;
+  font-weight:900;font-size:.9rem;cursor:pointer;font-family:var(--font);transition:.2s}
+.upload-analyze-btn:hover{box-shadow:0 0 20px rgba(0,200,232,.4)}
+.upload-footer{padding:.9rem 1.4rem;border-top:1px solid var(--border);
+  display:flex;gap:.6rem}
+.upload-cancel{flex:1;background:transparent;border:1px solid var(--border);
+  color:var(--muted);padding:.65rem;border-radius:9px;
+  font-family:var(--font);font-size:.8rem;font-weight:700;cursor:pointer}
+
+/* ══ AUTH MODAL ══ */
+.auth-overlay{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9998;
+  display:flex;align-items:center;justify-content:center;padding:1.2rem;
+  backdrop-filter:blur(12px)}
+.auth-box{background:var(--deep);border:1px solid var(--border);border-radius:22px;
+  max-width:440px;width:100%;overflow:hidden}
+.auth-head{padding:1.8rem 1.8rem 0;text-align:center}
+.auth-logo{width:56px;height:56px;border-radius:16px;
+  background:linear-gradient(135deg,var(--teal),var(--teal2));
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;font-weight:900;color:var(--bg);margin:0 auto 1rem;
+  box-shadow:0 0 24px rgba(0,200,232,.4)}
+.auth-head h2{font-size:1.3rem;font-weight:800;margin-bottom:.3rem}
+.auth-head p{font-size:.82rem;color:var(--muted);margin-bottom:1.4rem}
+.auth-tabs{display:flex;border-bottom:1px solid var(--border)}
+.auth-tab{flex:1;padding:.8rem;background:none;border:none;color:var(--muted);
+  cursor:pointer;font-family:var(--font);font-size:.85rem;font-weight:600;
+  transition:.2s;border-bottom:2px solid transparent}
+.auth-tab.on{color:var(--teal);border-bottom-color:var(--teal)}
+.auth-body{padding:1.4rem 1.8rem 1.8rem}
+.auth-field{margin-bottom:1rem}
+.auth-field label{display:block;font-size:.72rem;font-weight:700;color:var(--muted);
+  margin-bottom:.35rem;text-transform:uppercase;letter-spacing:.06em}
+.auth-inp{width:100%;background:rgba(0,200,232,.05);border:1px solid var(--border);
+  color:var(--white);padding:.7rem 1rem;border-radius:10px;
+  font-family:var(--font);font-size:.88rem;outline:none;direction:ltr;
+  transition:border-color .2s}
+.auth-inp:focus{border-color:var(--teal)}
+.auth-inp::placeholder{color:var(--muted);direction:rtl}
+.auth-btn{width:100%;background:linear-gradient(135deg,var(--teal),var(--teal2));
+  color:var(--bg);border:none;padding:.85rem;border-radius:11px;
+  font-weight:900;font-size:.95rem;cursor:pointer;font-family:var(--font);
+  margin-top:.4rem;transition:.2s;box-shadow:0 4px 20px rgba(0,200,232,.3)}
+.auth-btn:hover{transform:translateY(-1px);box-shadow:0 6px 28px rgba(0,200,232,.5)}
+.auth-btn:disabled{opacity:.5;cursor:default;transform:none}
+.auth-err{background:rgba(255,77,106,.1);border:1px solid rgba(255,77,106,.25);
+  color:var(--red);padding:.6rem .9rem;border-radius:8px;
+  font-size:.78rem;margin-bottom:.8rem;display:none}
+.auth-err.show{display:block}
+.auth-note{font-size:.72rem;color:var(--muted);text-align:center;margin-top:.8rem;line-height:1.5}
+
+/* ══ USER MENU ══ */
+.user-menu-wrap{position:relative}
+.user-btn{background:var(--teal-glow);border:1px solid var(--border);
+  color:var(--teal);padding:.38rem .8rem;border-radius:9px;
+  cursor:pointer;font-family:var(--font);font-size:.78rem;font-weight:700;
+  display:flex;align-items:center;gap:.4rem;transition:.2s}
+.user-btn:hover{background:rgba(0,200,232,.2)}
+.user-dropdown{position:absolute;top:calc(100% + 6px);left:0;
+  background:var(--deep);border:1px solid var(--border);border-radius:12px;
+  min-width:180px;overflow:hidden;z-index:200;
+  box-shadow:0 8px 32px rgba(0,0,0,.4);display:none}
+.user-dropdown.open{display:block}
+.ud-item{display:block;width:100%;padding:.65rem 1rem;background:none;border:none;
+  color:var(--muted);font-family:var(--font);font-size:.8rem;cursor:pointer;
+  text-align:right;transition:.15s}
+.ud-item:hover{background:var(--teal-glow);color:var(--teal)}
+.ud-item.danger:hover{background:rgba(255,77,106,.1);color:var(--red)}
+.ud-divider{border:none;border-top:1px solid var(--border);margin:.2rem 0}
+
+/* ══ CONVERSATIONS SIDEBAR ══ */
+.conv-item{display:flex;align-items:center;gap:.5rem;padding:.55rem .7rem;
+  border-radius:8px;cursor:pointer;font-size:.76rem;color:var(--muted);
+  transition:.16s;border:1px solid transparent;margin-bottom:.2rem}
+.conv-item:hover{background:var(--teal-glow);color:var(--white);border-color:var(--border)}
+.conv-item.active{background:var(--teal-glow);color:var(--teal);border-color:var(--border)}
+.conv-item-title{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.conv-item-del{background:none;border:none;color:transparent;cursor:pointer;
+  font-size:.8rem;padding:0 .2rem;transition:.15s}
+.conv-item:hover .conv-item-del{color:var(--red)}
+.conv-new-btn{width:100%;background:var(--teal-glow);border:1px solid var(--border);
+  color:var(--teal);padding:.55rem;border-radius:8px;cursor:pointer;
+  font-family:var(--font);font-size:.78rem;font-weight:700;margin-bottom:.6rem;
+  transition:.2s}
+.conv-new-btn:hover{background:rgba(0,200,232,.2)}
+</style>
+</head>
+<body>
+<div class="ambient"></div>
+<div id="ptcl"></div>
+<div class="sbar"><div class="sbar-fill" id="sf"></div></div>
+<div class="toast" id="toast"></div>
+
+<!-- MODALS -->
+<div class="movl" id="movl" onclick="closeMod(event)">
+  <div class="mmod">
+    <div class="mmod-hd">
+      <h2 id="modT"></h2>
+      <button class="mmod-cl" onclick="closeModD()">✕</button>
+    </div>
+    <div class="mmod-bd" id="modB"></div>
+    <div class="mmod-ft">
+      <button class="mft s" onclick="closeModD()">סגור</button>
+      <button class="mft p" onclick="modToBot()">🤖 שאל את הבוט</button>
+    </div>
+  </div>
+</div>
+
+<div class="lovl" id="lovl" onclick="closeLet(event)">
+  <div class="lmod">
+    <div class="lmod-hd">
+      <span style="font-size:1.3rem">✉️</span>
+      <h3>מחולל מכתבים מקצועי</h3>
+      <button class="lmod-close" onclick="closeLetD()">✕</button>
+    </div>
+    <div class="lmod-body">
+      <p style="font-size:.8rem;color:var(--muted);margin-bottom:.9rem">בחר סוג מכתב וה-AI יכתוב עבורך מכתב מנוסח ומקצועי:</p>
+      <div class="ltype-grid">
+        <button class="ltype-btn" onclick="setLetType('salary_error',this)">💰 שגיאה בחישוב שכר</button>
+        <button class="ltype-btn" onclick="setLetType('pension_error',this)">📈 בעיה בהפרשות פנסיה</button>
+        <button class="ltype-btn" onclick="setLetType('training_fund',this)">🏦 קרן השתלמות חסרה</button>
+        <button class="ltype-btn" onclick="setLetType('tax_credit',this)">🏛️ בקשה לפקיד מס</button>
+        <button class="ltype-btn" onclick="setLetType('union',this)">🤝 פנייה לארגון מורים</button>
+        <button class="ltype-btn" onclick="setLetType('general',this)">📝 תלונה כללית</button>
+      </div>
+      <button onclick="generateLetter()" id="genLetBtn"
+        style="width:100%;background:var(--teal);color:var(--bg);border:none;
+        padding:.75rem;border-radius:10px;font-weight:800;cursor:pointer;
+        font-family:var(--font);font-size:.88rem;margin-bottom:.8rem;
+        box-shadow:0 0 16px rgba(0,200,232,.3)">
+        ⚡ צור מכתב
+      </button>
+      <div class="letter-output" id="letOut"></div>
+    </div>
+    <div class="lmod-ft">
+      <button class="lft-btn s" onclick="closeLetD()">סגור</button>
+      <button class="lft-btn p" onclick="copyLetter()">📋 העתק מכתב</button>
+    </div>
+  </div>
+</div>
+
+<div class="provl" id="provl" onclick="closeProD(event)">
+  <div class="promod">
+    <div class="pro-hd">
+      <span style="font-size:1.2rem">👤</span>
+      <h3>הפרופיל שלי</h3>
+      <button class="mmod-cl" onclick="closeProDirect()">✕</button>
+    </div>
+    <div class="pro-body">
+      <div class="fg"><label>שם מלא</label><input class="fc" id="pName" placeholder="ישראלה ישראלי"></div>
+      <div class="fg"><label>חוזה שכר</label>
+        <select class="fc" id="pContract">
+          <option value="ofek">אופק חדש</option>
+          <option value="oz">עוז לתמורה</option>
+          <option value="old">חוזה ישן</option>
+        </select>
+      </div>
+      <div class="fg"><label>שנות ותק</label>
+        <div class="rng-wrap"><input type="range" class="rng" id="pSen" min="0" max="40" value="10" oninput="document.getElementById('pSenV').textContent=this.value"><span class="rval" id="pSenV">10</span></div>
+      </div>
+      <div class="fg"><label>תואר אקדמי</label>
+        <select class="fc" id="pDegree">
+          <option value="diploma">דיפלומה / תעודת הוראה</option>
+          <option value="b">תואר ראשון</option>
+          <option value="m">תואר שני</option>
+          <option value="d">דוקטורט</option>
+        </select>
+      </div>
+      <div class="fg"><label>תחום הוראה</label><input class="fc" id="pSubject" placeholder="מתמטיקה, עברית, חינוך מיוחד..."></div>
+      <div class="fg"><label>סוג מוסד</label>
+        <select class="fc" id="pInst">
+          <option value="public">ממלכתי / ממ"ד</option>
+          <option value="special">חינוך מיוחד</option>
+          <option value="arab">ערבי</option>
+          <option value="haredi">חרדי</option>
+        </select>
+      </div>
+      <div class="fg"><label>שעות הוראה שבועיות</label>
+        <div class="rng-wrap"><input type="range" class="rng" id="pHours" min="1" max="40" value="24" oninput="document.getElementById('pHoursV').textContent=this.value"><span class="rval" id="pHoursV">24</span></div>
+      </div>
+      <div class="fg"><label>מין (לחישוב נקודות זיכוי)</label>
+        <select class="fc" id="pGender"><option value="f">נקבה</option><option value="m">זכר</option></select>
+      </div>
+      <div class="fg"><label>מספר ילדים</label>
+        <div class="rng-wrap"><input type="range" class="rng" id="pKids" min="0" max="8" value="2" oninput="document.getElementById('pKidsV').textContent=this.value"><span class="rval" id="pKidsV">2</span></div>
+      </div>
+      <button class="pro-save" onclick="saveProfile()">💾 שמור פרופיל</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── NAV ── -->
+<nav id="nav">
+  <div class="brand" onclick="go('home')">
+    <div class="brand-icon">ת</div>
+    <div class="brand-name">תלוש <b>חכם</b></div>
+  </div>
+  <div class="nav-tabs">
+    <button class="ntab on" id="nt-home" onclick="go('home')">🏠 בית</button>
+    <button class="ntab" id="nt-chat" onclick="go('chat')">🤖 סוכן AI</button>
+    <button class="ntab" id="nt-calc" onclick="go('calc')">🧮 מחשבון</button>
+    <button class="ntab" id="nt-az" onclick="go('az')">📄 ניתוח תלוש</button>
+    <button class="ntab" id="nt-rights" onclick="go('rights')">⚖️ זכויות</button>
+    <button class="ntab" id="nt-upd" onclick="go('upd')">🔄 הסכמים</button>
+    <button class="ntab" onclick="openPro()">👤 הפרופיל שלי</button>
+  </div>
+  <div class="nav-r">
+    <select class="lang-sel" id="gLang" onchange="chLang(this.value)">
+      <option value="he">🇮🇱 עברית</option>
+      <option value="ar">🇮🇱 العربية</option>
+      <option value="ru">🇷🇺 Русский</option>
+      <option value="en">🇬🇧 English</option>
+      <option value="am">🇪🇹 አማርኛ</option>
+      <option value="fr">🇫🇷 Français</option>
+    </select>
+    <div id="navAuthArea"><button class="nav-cta" onclick="showAuth()">כניסה / הרשמה</button></div>
+  </div>
+</nav>
+
+<!-- ════════ PAGE: HOME ════════ -->
+<div class="pg on" id="pg-home">
+  <section class="hero">
+    <div class="hero-pill"><div class="ldot"></div>מעודכן · כל ההסכמים · חינם לחלוטין</div>
+    <h1>המשכורת שלך<br><em>שקופה ומוגנת</em></h1>
+    <p class="hero-p">הפלטפורמה החכמה היחידה לעובדי הוראה. בוט AI שמכיר כל סעיף בכל חוזה, מנתח כל תלוש, ומדריך אותך לקבל את מה שמגיע לך.</p>
+    <div class="hero-btns">
+      <button class="btn-p" onclick="go('chat')">⚡ שוחח עם הסוכן החכם</button>
+      <button class="btn-s" onclick="go('az')">📄 העלה תלוש לניתוח</button>
+      <button class="btn-s" onclick="go('calc')">🧮 מחשבון שכר</button>
+    </div>
+    <div class="metrics-row">
+      <div class="metric"><div class="mv" id="m1">0</div><div class="ml">רכיבי שכר נבדקים</div></div>
+      <div class="metric"><div class="mv" id="m2">0</div><div class="ml">חוזי שכר מכוסים</div></div>
+      <div class="metric"><div class="mv" id="m3">0</div><div class="ml">זכויות במאגר</div></div>
+      <div class="metric"><div class="mv" id="m4">0</div><div class="ml">שפות</div></div>
+      <div class="metric"><div class="mv">100%</div><div class="ml">חינם ופרטי</div></div>
+    </div>
+  </section>
+  <div class="home-features">
+    <div class="hf" onclick="go('chat')"><div class="hf-icon">🤖</div><h3>סוכן AI מתקדם</h3><p>שיחה טבעית בעברית, ערבית, רוסית ועוד. שואל, מבין, ומנתח את המצב שלך ספציפית.</p><div class="hf-arr">← נסה עכשיו</div></div>
+    <div class="hf" onclick="go('az')"><div class="hf-icon">📊</div><h3>ניתוח תלוש חכם</h3><p>העלה PDF או תמונה. המערכת קוראת כל שורה ומציגה מה נכון ומה לתקן.</p><div class="hf-arr">← נסה עכשיו</div></div>
+    <div class="hf" onclick="go('calc')"><div class="hf-icon">🧮</div><h3>מחשבון שכר מדויק</h3><p>הכנס ותק, חוזה ושעות — קבל תחשיב מלא של כל רכיבי השכר וההפרשות.</p><div class="hf-arr">← חשב עכשיו</div></div>
+    <div class="hf" onclick="go('rights')"><div class="hf-icon">⚖️</div><h3>מאגר זכויות מקיף</h3><p>60+ זכויות לפי נושא: שכר, פנסיה, חופשות, מס, חוק — עם הפניות לסעיפים.</p><div class="hf-arr">← גלה זכויות</div></div>
+    <div class="hf" onclick="openLetMod()"><div class="hf-icon">✉️</div><h3>מחולל מכתבים</h3><p>נמצאה שגיאה? ה-AI יכתוב מכתב מנוסח ומקצועי לאחראי שכר, פקיד מס או ארגון מורים.</p><div class="hf-arr">← צור מכתב</div></div>
+    <div class="hf" onclick="go('upd')"><div class="hf-icon">🔄</div><h3>עדכוני הסכמים</h3><p>כל שינוי בהסכמי אופק חדש, עוז לתמורה ושכר מותר — מיד בפלטפורמה.</p><div class="hf-arr">← ראה עדכונים</div></div>
+  </div>
+</div>
+
+<!-- ════════ PAGE: CHAT ════════ -->
+<div class="pg" id="pg-chat">
+  <div class="chat-pg">
+    <div class="chat-aside">
+      <div class="aside-top">
+        <h3>מצב שיחה</h3>
+        <div class="mode-list">
+          <button class="mnode on" onclick="setMode('general',this)"><span class="mnode-ic">💬</span>כללי</button>
+          <button class="mnode" onclick="setMode('payslip',this)"><span class="mnode-ic">📄</span>ניתוח תלוש</button>
+          <button class="mnode" onclick="setMode('rights',this)"><span class="mnode-ic">⚖️</span>זכויות</button>
+          <button class="mnode" onclick="setMode('letter',this)"><span class="mnode-ic">✉️</span>מכתב</button>
+          <button class="mnode" onclick="setMode('tax',this)"><span class="mnode-ic">🏦</span>מס</button>
+          <button class="mnode" onclick="setMode('pension',this)"><span class="mnode-ic">📈</span>פנסיה</button>
+        </div>
+      </div>
+      <div class="aside-hist">
+        <div class="hist-label">שיחות קודמות</div>
+        <div class="hist-item" onclick="loadHistory('payslip')"><span>📄</span>בדיקת תלוש אחרון</div>
+        <div class="hist-item" onclick="loadHistory('leave')"><span>🏖️</span>שאלה על ימי חופשה</div>
+        <div class="hist-item" onclick="loadHistory('calc')"><span>🧮</span>חישוב שכר שנת 2025</div>
+        <div class="hist-item" onclick="loadHistory('letter')"><span>✉️</span>מכתב לאחראי שכר</div>
+      </div>
+    </div>
+    <div class="chat-main">
+      <div class="chat-bar">
+        <div class="ag-av">ת</div>
+        <div class="ag-inf">
+          <h4>סוכן תלוש חכם</h4>
+          <p id="agSub">מומחה לשכר ולזכויות עובדי הוראה · AI</p>
+        </div>
+        <div class="ag-live"><div class="ldot2"></div>פעיל</div>
+      </div>
+      <div class="ctx-bar">
+        <span style="font-size:.67rem;color:var(--muted)">הקשר:</span>
+        <span class="ctx-t" id="ctxC">חוזה: לא הוגדר</span>
+        <span class="ctx-t" id="ctxS">ותק: לא הוגדר</span>
+        <span class="ctx-t" id="ctxM">מצב: כללי</span>
+        <button class="ctx-cl" onclick="clearCtx()">✕ אפס</button>
+      </div>
+      <div class="msgs" id="msgs"></div>
+      <div class="inp-area">
+        <div class="up-prev" id="upPrev">
+          <span>📎</span><span class="up-nm" id="upNm"></span>
+          <button class="up-rm" onclick="rmUp()">✕</button>
+        </div>
+        <div class="inp-row">
+          <label class="ibtn ibtn-at" title="העלה תלוש לניתוח" style="cursor:pointer">
+          📎<input type="file" id="directPayslipInput" 
+            accept=".pdf,.jpg,.jpeg,.png,.webp,image/*,application/pdf"
+            style="display:none" onchange="directUploadAndAnalyze(event)">
+        </label>
+          <input type="file" id="fi" accept=".pdf,.jpg,.jpeg,.png" onchange="onFile(event)">
+          <textarea class="cinp" id="ci" placeholder="שאל כל שאלה על שכר, זכויות, תלוש..."
+            onkeydown="chatKey(event)" oninput="ar(this)" rows="1"></textarea>
+          <button class="ibtn ibtn-sn" id="snBtn" onclick="send()" title="שלח">➤</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ PAGE: CALC ════════ -->
+<div class="pg" id="pg-calc">
+  <div class="inner">
+    <div class="ph"><div class="sbadge">🧮 מחשבון</div><h2>מחשבון שכר <em>מורים</em></h2><p>תחשיב מדויק לפי ההסכמים העדכניים</p></div>
+    <div class="cgrid">
+      <div class="cpanel">
+        <h3>📋 פרטי העסקה</h3>
+        <div class="fg"><label>חוזה שכר</label><select class="fc" id="cc"><option value="ofek">אופק חדש</option><option value="oz">עוז לתמורה</option><option value="old">חוזה ישן</option></select></div>
+        <div class="fg"><label>שנות ותק</label><div class="rng-wrap"><input type="range" class="rng" id="csen" min="0" max="40" value="10" oninput="document.getElementById('csenv').textContent=this.value"><span class="rval" id="csenv">10</span></div></div>
+        <div class="fg"><label>תואר אקדמי</label><select class="fc" id="cdeg"><option value="diploma">דיפלומה / תעודת הוראה</option><option value="b">תואר ראשון (B.A./B.Ed.)</option><option value="m">תואר שני (M.A.)</option><option value="d">דוקטורט (Ph.D.)</option></select></div>
+        <div class="fg"><label>שעות הוראה שבועיות</label><div class="rng-wrap"><input type="range" class="rng" id="chr" min="1" max="40" value="24" oninput="document.getElementById('chrv').textContent=this.value"><span class="rval" id="chrv">24</span></div></div>
+        <div class="fg"><label>שעות מילוי מקום שבועיות</label><div class="rng-wrap"><input type="range" class="rng" id="cex" min="0" max="15" value="3" oninput="document.getElementById('cexv').textContent=this.value"><span class="rval" id="cexv">3</span></div></div>
+        <div class="fg"><label>סוג מוסד</label><select class="fc" id="cinst"><option value="public">ממלכתי / ממ"ד</option><option value="special">חינוך מיוחד</option><option value="arab">ערבי</option><option value="haredi">חרדי</option></select></div>
+      </div>
+      <div class="cpanel">
+        <h3>📌 תוספות ומשתנים</h3>
+        <div class="fg"><label>נקודות זיכוי מס</label><div class="rng-wrap"><input type="range" class="rng" id="cpt" min="1" max="10" step=".5" value="2.25" oninput="document.getElementById('cptv').textContent=parseFloat(this.value).toFixed(1)"><span class="rval" id="cptv">2.3</span></div></div>
+        <div class="fg"><label>כיתת אם (מחנך)</label><select class="fc" id="chr2"><option value="0">לא</option><option value="1">כן</option></select></div>
+        <div class="fg"><label>תפקיד נוסף</label><select class="fc" id="crole"><option value="0">אין</option><option value="mentor">מנטור</option><option value="coord">רכז מקצועי</option><option value="special_ed">רכז חינוך מיוחד</option></select></div>
+        <div class="fg"><label>מסלול פנסיה</label><select class="fc" id="cpen"><option value="0.2083">20.83% (מלא)</option><option value="0.175">17.5% (חלקי)</option></select></div>
+        <div class="fg"><label>מין</label><select class="fc" id="cgn"><option value="f">נקבה</option><option value="m">זכר</option></select></div>
+        <div class="fg"><label>ילדים</label><div class="rng-wrap"><input type="range" class="rng" id="ckids" min="0" max="8" value="2" oninput="document.getElementById('ckidsv').textContent=this.value"><span class="rval" id="ckidsv">2</span></div></div>
+        <button class="cbtn" onclick="calc()">⚡ חשב שכר מלא</button>
+      </div>
+      <div class="rpanel" id="rp"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ PAGE: ANALYZER ════════ -->
+<div class="pg" id="pg-az">
+  <div class="az-inner">
+    <div class="ph"><div class="sbadge">📄 ניתוח</div><h2>ניתוח <em>תלוש מלא</em></h2><p>העלה תלוש וקבל דוח מקיף תוך שניות</p></div>
+    <div class="drop-z" id="dz" ondragover="dzOver(event)" ondrop="dzDrop(event)">
+      <input type="file" id="azfi" accept=".pdf,.jpg,.jpeg,.png" onchange="azRedirect(event)">
+      <div class="dz-ic">📤</div>
+      <div class="dz-t">גרור תלוש לכאן, או לחץ לבחירה</div>
+      <div class="dz-s">PDF, JPG, PNG — עד 20MB — מוצפן לחלוטין</div>
+      <div class="dz-fmts">
+        <span class="ftag">PDF</span><span class="ftag">JPG</span>
+        <span class="ftag">PNG</span><span class="ftag">🔒 מוצפן</span>
+        <span class="ftag">⚡ מיידי</span>
+      </div>
+    </div>
+    <div class="az-area" id="azArea">
+      <div class="az-prog">
+        <div style="display:flex;align-items:center;gap:.5rem;font-size:.85rem;font-weight:700"><span>🔍</span>מנתח...</div>
+        <div class="psteps" id="psteps">
+          <div class="ps ac" id="pa1">קריאה</div>
+          <div class="ps" id="pa2">זיהוי</div>
+          <div class="ps" id="pa3">השוואה</div>
+          <div class="ps" id="pa4">הפרשות</div>
+          <div class="ps" id="pa5">מס</div>
+          <div class="ps" id="pa6">דוח</div>
+        </div>
+      </div>
+      <div class="full-rep" id="frep" style="display:none"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ PAGE: RIGHTS ════════ -->
+<div class="pg" id="pg-rights">
+  <div class="rts-inner">
+    <div class="ph" style="text-align:right;padding-bottom:.8rem"><div class="sbadge">⚖️ זכויות</div><h2>מאגר <em>זכויות מורים</em></h2></div>
+    <div class="rts-sb"><input type="text" class="rts-inp" id="rsi" placeholder="חפש זכות, נושא, חוק..." oninput="fRts()"><button class="rts-sbtn" onclick="fRts()">חיפוש</button></div>
+    <div class="cats" id="cats">
+      <button class="cpill on" onclick="fCat('all',this)">הכל</button>
+      <button class="cpill" onclick="fCat('salary',this)">💰 שכר</button>
+      <button class="cpill" onclick="fCat('pension',this)">📈 פנסיה</button>
+      <button class="cpill" onclick="fCat('leave',this)">🏖️ חופשות</button>
+      <button class="cpill" onclick="fCat('tax',this)">🏦 מס</button>
+      <button class="cpill" onclick="fCat('law',this)">📜 חוק</button>
+      <button class="cpill" onclick="fCat('union',this)">🤝 ארגון</button>
+    </div>
+    <div class="rgrid" id="rg"></div>
+  </div>
+</div>
+
+<!-- ════════ PAGE: UPDATES ════════ -->
+<div class="pg" id="pg-upd">
+  <div class="upd-inner">
+    <div class="ph" style="text-align:right;padding-bottom:.8rem"><div class="sbadge">🔄 עדכונים</div><h2>הסכמים ועדכוני <em>שכר</em></h2></div>
+    <div class="ugrid" id="ug"></div>
+  </div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════
+   DATA
+═══════════════════════════════════════ */
+const ST={
+  ofek:{name:'אופק חדש',
+    sen:[{m:2,b:7800},{m:5,b:8400},{m:8,b:9100},{m:11,b:9700},{m:14,b:10400},
+         {m:17,b:11200},{m:20,b:12100},{m:25,b:13200},{m:30,b:14500},{m:99,b:16200}],
+    deg:{diploma:0,b:800,m:1600,d:2800},sub:72.5,hr:820,men:650,crd:1200,sp:900},
+  oz:{name:'עוז לתמורה',
+    sen:[{m:2,b:8200},{m:5,b:8900},{m:8,b:9600},{m:11,b:10300},{m:14,b:11100},
+         {m:17,b:12000},{m:20,b:13100},{m:25,b:14400},{m:30,b:15800},{m:99,b:17500}],
+    deg:{diploma:0,b:900,m:1800,d:3200},sub:85.0,hr:900,men:750,crd:1400,sp:1100},
+  old:{name:'חוזה ישן',
+    sen:[{m:2,b:6200},{m:5,b:6800},{m:8,b:7400},{m:11,b:8100},{m:14,b:8900},
+         {m:17,b:9700},{m:20,b:10800},{m:99,b:12000}],
+    deg:{diploma:0,b:600,m:1200,d:2200},sub:58.0,hr:680,men:480,crd:900,sp:720}
+};
+
+const RIGHTS=[
+  {id:1,cat:'salary',badge:'cs',label:'💰 שכר',title:'שכר בסיס — אופק חדש',
+   short:'שכר בסיס מינימלי לפי ותק — מ-₪7,800 עד ₪16,200 לחודש.',
+   full:`<h4>טבלת שכר בסיס 2024–2025</h4><ul><li>0–2 שנות ותק: <strong>₪7,800</strong></li><li>3–5 שנים: <strong>₪8,400</strong></li><li>6–8 שנים: <strong>₪9,100</strong></li><li>9–11 שנים: <strong>₪9,700</strong></li><li>12–14 שנים: <strong>₪10,400</strong></li><li>15–17 שנים: <strong>₪11,200</strong></li><li>18–20 שנים: <strong>₪12,100</strong></li><li>21–25 שנים: <strong>₪13,200</strong></li><li>26–30 שנים: <strong>₪14,500</strong></li><li>31+ שנים: <strong>₪16,200</strong></li></ul><h4>תוספות תואר</h4><ul><li>תואר ראשון: +<strong>₪800/חודש</strong></li><li>תואר שני: +<strong>₪1,600/חודש</strong></li><li>דוקטורט: +<strong>₪2,800/חודש</strong></li></ul><div class="law-ref">📜 הסכם אופק חדש 2008 + עדכון 2024</div>`},
+  {id:2,cat:'salary',badge:'cs',label:'💰 שכר',title:'שכר בסיס — עוז לתמורה',
+   short:'שכר גבוה יותר מאופק חדש — מ-₪8,200 עד ₪17,500 — תמורת 36 שעות נוכחות.',
+   full:`<h4>עקרון החוזה</h4><p>36 שעות נוכחות שבועיות — 25–27 שעות הוראה + שעות עיון, הכנה, קשר.</p><h4>טבלת שכר בסיס</h4><ul><li>0–2 שנות ותק: <strong>₪8,200</strong></li><li>3–5 שנים: <strong>₪8,900</strong></li><li>6–8 שנים: <strong>₪9,600</strong></li><li>15–17 שנים: <strong>₪12,000</strong></li><li>25+ שנים: <strong>₪17,500</strong></li></ul><div class="law-ref">📜 הסכם עוז לתמורה 2016 + עדכון 2024</div>`},
+  {id:3,cat:'salary',badge:'cs',label:'💰 שכר',title:'שעות מילוי מקום — תמחור',
+   short:'שכר שעתי לפי חוזה: אופק חדש ₪72.5, עוז לתמורה ₪85.0 לשעה.',
+   full:`<h4>שכר שעתי למילוי מקום</h4><ul><li>אופק חדש: <strong>₪72.5/שעה</strong></li><li>עוז לתמורה: <strong>₪85.0/שעה</strong></li><li>חוזה ישן: <strong>₪58.0/שעה</strong></li></ul><h4>שגיאות נפוצות</h4><ul><li>חישוב לפי שכר שעתי שגוי</li><li>אי-הכללת תוספות ותק בחישוב</li><li>תמחור לפי חוזה אחר</li></ul><div class="law-ref">📜 סעיף 18 — הסכם אופק חדש | סעיף 22 — עוז לתמורה</div>`},
+  {id:4,cat:'pension',badge:'cp',label:'📈 פנסיה',title:'קרן פנסיה — שיעורי הפרשה',
+   short:'מעסיק 14.83% + עובד 6% = 20.83% לחודש. זכות חוקית מלאה.',
+   full:`<h4>שיעורי הפרשה חובה</h4><ul><li>מעסיק: <strong>14.83%</strong></li><li>עובד: <strong>6%</strong></li><li>סה"כ: <strong>20.83%</strong></li></ul><h4>מה זה שכר קובע לפנסיה?</h4><p>שכר בסיס + תוספות ותק + תוספות תואר. <strong>לא</strong> כולל שעות מילוי מקום.</p><h4>שגיאות נפוצות</h4><ul><li>הפרשה על שכר בסיס בלבד</li><li>שיעור מעסיק מתחת ל-14.83%</li></ul><div class="law-ref">📜 חוק פנסיה חובה 2008 | צו הרחבה</div>`},
+  {id:5,cat:'pension',badge:'cp',label:'📈 פנסיה',title:'קרן השתלמות',
+   short:'מעסיק 7.5% + עובד 2.5%. פטורה ממס לאחר 6 שנים עד תקרה.',
+   full:`<h4>שיעורי הפרשה</h4><ul><li>מעסיק: <strong>7.5%</strong></li><li>עובד: <strong>2.5%</strong></li></ul><h4>תקרת פטור ממס (2025)</h4><p>₪19,080 לשנה — על רווחים מעל זה משלמים מס רווחי הון.</p><h4>מתי ניתן למשוך?</h4><p>לאחר 6 שנות חברות (או לאחר פרישה בכל עת).</p><h4>שגיאה נפוצה</h4><p>מעסיקים מפרישים 5% במקום 7.5% — הפרש של כ-₪200–300 לחודש.</p><div class="law-ref">📜 הסכם קיבוצי — קרן השתלמות לעובדי הוראה</div>`},
+  {id:6,cat:'leave',badge:'cl',label:'🏖️ חופשות',title:'ימי חופשה שנתית',
+   short:'כ-60 ימי עבודה בקיץ + חופשות חגים. ימים לא מנוצלים עוברים.',
+   full:`<h4>ימי חופשה שנתית</h4><ul><li>חופשת קיץ: <strong>כ-60 ימי עבודה</strong></li><li>חנוכה: שבוע</li><li>פסח: שבועיים</li><li>סוכות: שבוע</li><li>כל חגי ישראל + יום עצמאות</li></ul><h4>צבירה</h4><p>ימים שלא נוצלו עוברים לשנה הבאה עד תקרה הקבועה בהסכם.</p><div class="law-ref">📜 חוק חופשה שנתית | הסכם אופק חדש — נספח ב</div>`},
+  {id:7,cat:'leave',badge:'cl',label:'🏖️ חופשות',title:'ימי מחלה',
+   short:'1.5 יום מחלה לחודש — ללא תקרת צבירה. יום ראשון ללא תשלום.',
+   full:`<h4>צבירה</h4><p>1.5 ימים לכל חודש עבודה מלא. <strong>אין תקרת צבירה.</strong></p><h4>תשלום</h4><ul><li>יום ראשון: <strong>0%</strong> (לפי חוק)</li><li>יום שני-שלישי: <strong>50%</strong></li><li>מיום רביעי: <strong>100%</strong></li></ul><h4>מחלה ממושכת</h4><p>מעל 90 יום — זכאות לביטוח לאומי.</p><div class="law-ref">📜 חוק דמי מחלה 1976</div>`},
+  {id:8,cat:'tax',badge:'ct',label:'🏦 מס',title:'נקודות זיכוי מס',
+   short:'כל נקודה = ₪242.7/חודש חסכון. בדוק שאתה מנצל את כל הנקודות.',
+   full:`<h4>ערך נקודה (2025)</h4><p><strong>₪242.7 לחודש / ₪2,912 לשנה</strong></p><h4>נקודות בסיסיות</h4><ul><li>אשה: <strong>2.25 נקודות</strong></li><li>גבר: <strong>2.75 נקודות</strong></li></ul><h4>נקודות נוספות</h4><ul><li>ילד עד גיל 5: <strong>2 נקודות</strong></li><li>ילד גיל 6–17: <strong>1 נקודה</strong></li><li>עולה חדש: עד <strong>3 נקודות</strong></li><li>לאחר שירות לאומי/צבאי: <strong>½ נקודה</strong></li><li>נכות: לפי אחוז</li></ul><h4>כיצד לממש</h4><p>הגש טופס 101 מעודכן מדי שנה.</p><div class="law-ref">📜 פקודת מס הכנסה — סעיפים 34–36</div>`},
+  {id:9,cat:'tax',badge:'ct',label:'🏦 מס',title:'החזר מס הכנסה',
+   short:'ניתן לתבוע החזר עד 6 שנים אחורה. ממוצע ₪3,000–₪8,000.',
+   full:`<h4>מתי מגיע החזר?</h4><ul><li>עבדת חלק מהשנה</li><li>הוצאות רפואיות מוכרות</li><li>תרומות לעמותות מוכרות</li><li>לימודים לתואר שני</li><li>מגורים בפריפריה (זיכוי יישוב)</li><li>לא עדכנת נקודות זיכוי</li></ul><h4>כיצד לתבוע</h4><p>הגש דוח שנתי או טופס בקשה להחזר. ניתן <strong>עד 6 שנים אחורה</strong>.</p><div class="law-ref">📜 פקודת מס הכנסה — סעיף 160</div>`},
+  {id:10,cat:'law',badge:'claw',label:'📜 חוק',title:'הגנה בהיריון ולידה',
+   short:'אסור לפטר בהיריון. 26 שבועות חופשת לידה. 15 שבועות בתשלום.',
+   full:`<h4>הגנות</h4><ul><li>אסור לפטר בהיריון ללא אישור שר העבודה</li><li>הגנה 60 יום לאחר חופשת לידה</li><li>חופשת לידה: <strong>26 שבועות</strong></li><li>דמי לידה (ביטוח לאומי): <strong>15 שבועות</strong></li></ul><h4>דמי לידה</h4><p>100% מהשכר הממוצע ב-3 חודשים האחרונים (עד תקרה).</p><div class="law-ref">📜 חוק עבודת נשים 1954 | חוק ביטוח לאומי</div>`},
+  {id:11,cat:'law',badge:'claw',label:'📜 חוק',title:'פיצויי פיטורין',
+   short:'שנת עבודה × שכר חודשי אחרון. זכות חוקית מלאה.',
+   full:`<h4>חישוב</h4><p><strong>שנות עבודה × שכר חודשי אחרון</strong></p><h4>מקרים של זכאות</h4><ul><li>פיטורין מצד המעסיק</li><li>מוות של המעסיק / פשיטת רגל</li><li>מחלה ממושכת המונעת עבודה</li><li>עקרת בית עם ילד מתחת ל-9 (בתנאים)</li></ul><h4>פיצויים בפנסיה</h4><p>6% מהשכר נצבר כ"חלק פיצויים" — ניתן למשיכה בפיטורין.</p><div class="law-ref">📜 חוק פיצויי פיטורין 1963</div>`},
+  {id:12,cat:'union',badge:'cu',label:'🤝 ארגון',title:'ארגון המורים — שירותים',
+   short:'ייצוג, ייעוץ משפטי, הדרכה בשכר וזכויות — לכל חבר.',
+   full:`<h4>שירותים</h4><ul><li>ייצוג בסכסוכים עם המעסיק</li><li>ייעוץ משפטי בנושאי עבודה</li><li>הדרכה בשכר וזכויות</li><li>הנחות בחינוך, בריאות ופנאי</li></ul><h4>כיצד לפנות</h4><ul><li>נציג מחוזי — בסניף שלך</li><li>www.morim.org.il</li></ul><h4>מתי לפנות</h4><p>כל מקרה של חשד לפגיעה בשכר, פיטורין לא מוצדקים, או הפרת הסכם.</p><div class="law-ref">📜 ארגון המורים בישראל | הסתדרות המורים</div>`},
+  {id:13,cat:'salary',badge:'cs',label:'💰 שכר',title:'תוספת כיתת אם (מחנך)',
+   short:'מחנך כיתה: אופק חדש ₪820, עוז לתמורה ₪900 לחודש.',
+   full:`<h4>גובה התוספת</h4><ul><li>אופק חדש: <strong>₪820/חודש</strong></li><li>עוז לתמורה: <strong>₪900/חודש</strong></li></ul><h4>תנאים</h4><ul><li>אחריות על כיתה ממוספרת ורשמית</li><li>כל שנת לימודים</li></ul><div class="law-ref">📜 הסכם אופק חדש סעיף 12 | עוז לתמורה סעיף 18</div>`},
+  {id:14,cat:'pension',badge:'cp',label:'📈 פנסיה',title:'גיל פרישה ופנסיה תקציבית',
+   short:'גיל פרישת חובה: 67. פנסיה תקציבית למורים שהחלו לפני 2004.',
+   full:`<h4>גיל פרישה</h4><ul><li>גיל חובה: <strong>67</strong></li><li>פרישה מוקדמת: גיל <strong>62</strong> (ותק 20+ שנה)</li></ul><h4>סוגי פנסיה</h4><ul><li>לפני 2004: <strong>פנסיה תקציבית</strong> — המדינה אחראית</li><li>אחרי 2004: <strong>פנסיה צוברת</strong> — קרן פנסיה</li></ul><div class="law-ref">📜 חוק גיל פרישה 2004 | תקנות גמלאות עובדי המדינה</div>`},
+  {id:15,cat:'tax',badge:'ct',label:'🏦 מס',title:'זיכוי מס על תרומות',
+   short:'35% מהתרומה חוזרים כזיכוי מס. שמור קבלות — ניתן לתבוע בדוח שנתי.',
+   full:`<h4>הזיכוי</h4><p>35% מסכום התרומה כזיכוי ממס הכנסה.</p><h4>תנאים</h4><ul><li>עמותה עם אישור לפי סעיף 46</li><li>תרומה מינימלית: <strong>₪207</strong></li><li>תקרה: 30% מההכנסה החייבת</li></ul><div class="law-ref">📜 פקודת מס הכנסה — סעיף 46</div>`},
+  {id:16,cat:'leave',badge:'cl',label:'🏖️ חופשות',title:'מחלת ילד',
+   short:'עד 8 ימים לשנה לטיפול בילד חולה — בתשלום מלא. הורה יחיד — 16 ימים.',
+   full:`<h4>זכאות</h4><ul><li>עד גיל 16: <strong>8 ימים לשנה</strong></li><li>הורה יחיד: <strong>16 ימים</strong></li><li>תשלום: <strong>מלא</strong></li></ul><h4>נדרש</h4><ul><li>אישור רופא</li><li>הצהרה שהורה שני אינו ניצל ימים אלו</li></ul><div class="law-ref">📜 חוק דמי מחלה (היעדרות בשל מחלת ילד) 1993</div>`}
+];
+
+const UPDATES=[
+  {date:'ינואר 2025',title:'תוספת יוקר מחיה 3.2% לכל עובדי ההוראה',tags:['אופק חדש','עוז לתמורה','כולם'],
+   body:'עדכון שכר כללי של 3.2% החל מ-1.1.2025 — לפי סעיף ההצמדה בהסכמים הקיבוציים.',
+   impact:'תוספת של ₪250–₪520 לחודש לפי חוזה ודרגה.'},
+  {date:'אוקטובר 2024',title:'תוספת חינוך מיוחד — 12% על שכר הבסיס',tags:['חינוך מיוחד','עוז לתמורה'],
+   body:'הסכם חדש עם ארגון המורים מוסיף 12% לעובדי חינוך מיוחד.',
+   impact:'₪900–₪1,800 לחודש לפי ותק.'},
+  {date:'יולי 2024',title:'חוזר חישוב שעות מילוי מקום — עוז לתמורה',tags:['עוז לתמורה','מילוי מקום'],
+   body:'בסיס חישוב שכר שעות מילוי מקום בחוזה עוז לתמורה עודכן בחוזר מנכ"ל.',
+   impact:'מורים עם 10+ שנות ותק: ₪120–₪250 נוספים לחודש.'},
+  {date:'ינואר 2024',title:'תוספת מחנך כיתה — עלייה של 8%',tags:['אופק חדש','כיתת אם'],
+   body:'תוספת מחנך כיתה עודכנה ל-₪820 (אופק) ו-₪900 (עוז) — עלייה של 8% מ-2023.',
+   impact:'₪60–₪65 נוספים לחודש למחנכי כיתה.'},
+  {date:'ספטמבר 2023',title:'ערך נקודת זיכוי מס 2024 — ₪242.7',tags:['מס הכנסה','כולם'],
+   body:'ערך נקודת זיכוי עודכן ל-₪242.7 לחודש (₪2,912 לשנה) לשנת המס 2024.',
+   impact:'הגש טופס 101 מעודכן לוודא שכל הנקודות מחושבות.'},
+  {date:'מרץ 2023',title:'פסיקה: הפרשת קרן השתלמות על תוספות',tags:['קרן השתלמות','כולם'],
+   body:'בית הדין לעבודה פסק כי יש להפריש 7.5% גם על תוספות ותק ותואר.',
+   impact:'מורים שלא קיבלו הפרשה מלאה זכאים להפרשי שנים.'}
+];
+
+/* ═══════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════ */
+const PAGES=['home','chat','calc','az','rights','upd'];
+function go(id){
+  PAGES.forEach(p=>{
+    document.getElementById('pg-'+p)?.classList.remove('on');
+    document.getElementById('nt-'+p)?.classList.remove('on');
+  });
+  document.getElementById('pg-'+id)?.classList.add('on');
+  document.getElementById('nt-'+id)?.classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(id==='rights')renderRts();
+  if(id==='upd')renderUpd();
+  if(id==='chat'&&document.getElementById('msgs').children.length===0)initChat();
+}
+
+/* ═══════════════════════════════════════
+   PARTICLES
+═══════════════════════════════════════ */
+(()=>{
+  const c=document.getElementById('ptcl');
+  for(let i=0;i<16;i++){
+    const p=document.createElement('div');p.className='pt';
+    const s=Math.random()*5+2;
+    p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;
+      background:${Math.random()>.5?'rgba(0,200,232,':'rgba(255,209,102,'}${(Math.random()*.25+.08).toFixed(2)})};
+      animation-duration:${(Math.random()*18+14).toFixed(1)}s;animation-delay:${(Math.random()*14).toFixed(1)}s`;
+    c.appendChild(p);
+  }
+})();
+
+/* ═══════════════════════════════════════
+   COUNTERS
+═══════════════════════════════════════ */
+(()=>{
+  const targets={m1:28,m2:3,m3:62,m4:6};
+  Object.entries(targets).forEach(([id,end])=>{
+    let cur=0;const el=document.getElementById(id);if(!el)return;
+    const t=setInterval(()=>{cur=Math.min(cur+Math.ceil(end/38),end);el.textContent=cur+(id==='m3'?'+':'');if(cur>=end)clearInterval(t);},45);
+  });
+})();
+
+/* SCROLL */
+window.addEventListener('scroll',()=>{
+  const p=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;
+  document.getElementById('sf').style.width=Math.min(p,100)+'%';
+  document.getElementById('nav').classList.toggle('sh',window.scrollY>10);
+});
+
+/* ═══════════════════════════════════════
+   PROFILE
+═══════════════════════════════════════ */
+let profile={};
+function loadProfile(){
+  try{profile=JSON.parse(localStorage.getItem('tcp')||'{}');}catch{profile={};}
+  if(profile.contract)document.getElementById('ctxC').textContent='חוזה: '+{ofek:'אופק חדש',oz:'עוז לתמורה',old:'חוזה ישן'}[profile.contract]||profile.contract;
+  if(profile.seniority)document.getElementById('ctxS').textContent='ותק: '+profile.seniority+' שנים';
+}
+function openPro(){
+  if(profile.contract)document.getElementById('pContract').value=profile.contract;
+  if(profile.seniority){document.getElementById('pSen').value=profile.seniority;document.getElementById('pSenV').textContent=profile.seniority;}
+  if(profile.name)document.getElementById('pName').value=profile.name;
+  document.getElementById('provl').classList.add('op');
+  document.body.style.overflow='hidden';
+}
+function saveProfile(){
+  profile={
+    name:document.getElementById('pName').value,
+    contract:document.getElementById('pContract').value,
+    seniority:parseInt(document.getElementById('pSen').value),
+    degree:document.getElementById('pDegree').value,
+    subject:document.getElementById('pSubject').value,
+    institution:document.getElementById('pInst').value,
+    hours:parseInt(document.getElementById('pHours').value),
+    gender:document.getElementById('pGender').value,
+    kids:parseInt(document.getElementById('pKids').value)
+  };
+  localStorage.setItem('tcp',JSON.stringify(profile));
+  loadProfile();
+  closeProDirect();
+  toast('פרופיל נשמר בהצלחה ✓','tok');
+}
+function closeProD(e){if(e.target===document.getElementById('provl'))closeProDirect();}
+function closeProDirect(){document.getElementById('provl').classList.remove('op');document.body.style.overflow='';}
+
+/* ═══════════════════════════════════════
+   CHAT ENGINE
+═══════════════════════════════════════ */
+let mode='general',msgs_hist=[],upFile=null,ctx={contract:null,sen:null};
+// API endpoint — in production, use '/api/chat'. For local testing, call Anthropic directly.
+const API='/api/chat';
+
+function setMode(m,btn){
+  mode=m;
+  document.querySelectorAll('.mnode').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  const labels={general:'שאלות כלליות',payslip:'ניתוח תלוש',rights:'זכויות',letter:'כתיבת מכתב',tax:'ייעוץ מס',pension:'פנסיה והפרשות'};
+  document.getElementById('agSub').textContent=labels[m]||labels.general;
+  document.getElementById('ctxM').textContent='מצב: '+(labels[m]||m);
+  if(m==='payslip'){
+    addBot('לחץ/י על כפתור 📎 כדי להעלות תלוש משכורת לניתוח מלא, או תאר/י את הנתונים בטקסט.',
+      ['📎 העלה תלוש עכשיו','תאר נתונים בטקסט']);
+  }
+  else if(m==='letter')addBot('ספר/י לי על הבעיה — אכתוב מכתב מנוסח ומקצועי לכל גורם.');
+  else if(m==='tax')addBot('ספר/י על מצבך (ילדים, הכנסות נוספות, מגורים) ואבדוק זכאויות מס.');
+  else if(m==='pension')addBot('מה שנת תחילת עבודתך? האם פנסיה תקציבית או צוברת?');
+}
+
+function clearCtx(){
+  ctx={contract:null,sen:null};msgs_hist=[];
+  document.getElementById('ctxC').textContent='חוזה: לא הוגדר';
+  document.getElementById('ctxS').textContent='ותק: לא הוגדר';
+  toast('הקשר אופס','tok');
+}
+
+function onFile(e){
+  upFile=e.target.files[0];
+  if(!upFile)return;
+  document.getElementById('upNm').textContent=upFile.name;
+  document.getElementById('upPrev').classList.add('show');
+  toast('קובץ נטען: '+upFile.name,'tok');
+}
+function rmUp(){upFile=null;document.getElementById('upPrev').classList.remove('show');document.getElementById('fi').value='';}
+
+function initChat(){
+  loadProfile();
+  const name = profile.name ? `, ${profile.name.split(' ')[0]}` : '';
+
+  if(profile.contract && profile.seniority){
+    // Profile exists - use it proactively
+    const contractName = {ofek:'אופק חדש',oz:'עוז לתמורה',old:'חוזה ישן'}[profile.contract] || profile.contract;
+    const degName = {diploma:'דיפלומה',b:'תואר ראשון',m:'תואר שני',d:'דוקטורט'}[profile.degree] || '';
+    addBot(
+      `שלום${name}! 👋 אני <strong>תלוש חכם</strong> — היועץ שלך לשכר וזכויות עובדי הוראה.<br><br>` +
+      `ראיתי את הפרופיל שלך: <strong>${contractName}</strong>, <strong>${profile.seniority} שנות ותק</strong>${degName?', '+degName:''}.<br><br>` +
+      `לפי הנתונים האלה, שכר הבסיס שמגיע לך הוא בסביבות <strong>₪${calcExpectedBase(profile.contract, profile.seniority).toLocaleString()}</strong> לחודש.<br><br>` +
+      `מה תרצה לבדוק היום?`,
+      ['📄 העלה תלוש לניתוח','💰 בדוק את שכר הבסיס שלי','📈 בדוק הפרשות','⚠️ יש לי חשד לשגיאה']
+    );
+  } else {
+    // No profile - start proactive intake
+    addBot(
+      `שלום${name}! 👋 אני <strong>תלוש חכם</strong> — היועץ שלך לשכר וזכויות עובדי הוראה בישראל.<br><br>` +
+      `אני כאן כדי לוודא שאת/ה מקבל/ת <strong>בדיוק את מה שמגיע לך</strong> — לא פחות.<br><br>` +
+      `כדי שאוכל לעזור בצורה מדויקת, אני צריך כמה פרטים בסיסיים.<br>` +
+      `<strong>תחת איזה חוזה את/ה עובד/ת?</strong>`,
+      ['אופק חדש','עוז לתמורה','לא בטוח/ה — עזור לי להבין']
+    );
+  }
+}
+
+function calcExpectedBase(contract, seniority){
+  const sen = parseInt(seniority) || 0;
+  const tables = {
+    ofek:[{m:2,b:7800},{m:5,b:8400},{m:8,b:9100},{m:11,b:9700},{m:14,b:10400},
+          {m:17,b:11200},{m:20,b:12100},{m:25,b:13200},{m:30,b:14500},{m:99,b:16200}],
+    oz:  [{m:2,b:8200},{m:5,b:8900},{m:8,b:9600},{m:11,b:10300},{m:14,b:11100},
+          {m:17,b:12000},{m:20,b:13100},{m:25,b:14400},{m:30,b:15800},{m:99,b:17500}],
+    old: [{m:2,b:6200},{m:5,b:6800},{m:8,b:7400},{m:11,b:8100},{m:14,b:8900},
+          {m:17,b:9700},{m:20,b:10800},{m:99,b:12000}]
+  };
+  const t = tables[contract] || tables.ofek;
+  return (t.find(r => sen <= r.m) || t[t.length-1]).b;
+}
+
+function addUM(t){
+  const d=document.createElement('div');d.className='msg u';
+  d.innerHTML=`<div class="mav">👤</div><div class="mwrap"><div class="bub">${esc(t)}</div><div class="mmeta">${now()}</div></div>`;
+  document.getElementById('msgs').appendChild(d);scroll_();
+}
+
+function addBot(html,qrs){
+  return new Promise(res=>{
+    const typId='typ'+Date.now();
+    const tw=document.createElement('div');tw.className='typwrap';tw.id=typId;
+    tw.innerHTML=`<div class="mav" style="width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,var(--teal),var(--teal2));display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--bg);font-size:.85rem">ת</div><div class="typbub"><div class="td"></div><div class="td"></div><div class="td"></div></div>`;
+    document.getElementById('msgs').appendChild(tw);scroll_();
+    setTimeout(()=>{
+      tw.remove();
+      const d=document.createElement('div');d.className='msg b';
+      const qrHtml=qrs?.length?`<div class="qrs">${qrs.map(q=>`<button class="qr" onclick="qrClick(this,'${q.replace(/'/g,"\\'")}')">${q}</button>`).join('')}</div>`:'';
+      d.innerHTML=`<div class="mav">ת</div><div class="mwrap"><div class="bub">${html}</div>${qrHtml}<div class="mmeta">${now()} · תלוש חכם AI</div></div>`;
+      document.getElementById('msgs').appendChild(d);scroll_();res();
+    },650+Math.random()*400);
+  });
+}
+
+function qrClick(btn,text){
+  btn.closest('.qrs').querySelectorAll('.qr').forEach(b=>b.disabled=true);
+  if(text.includes('העלה תלוש')){openUploadModal();return;}
+  addUM(text);doSend(text);
+}
+
+async function send(){
+  const inp=document.getElementById('ci');
+  const t=inp.value.trim();
+  if(!t&&!upFile)return;
+  const txt=t||(upFile?`העליתי קובץ: ${upFile.name}`:'');
+  inp.value='';ar(inp);
+  document.getElementById('snBtn').disabled=true;
+  addUM(txt);
+  if(upFile){
+    addBot(`📎 <strong>${upFile.name}</strong> — מנתח...`);
+    upFile=null;document.getElementById('upPrev').classList.remove('show');
+  }
+  await doSend(txt);
+  document.getElementById('snBtn').disabled=false;
+}
+
+function chatKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send();}}
+function ar(t){t.style.height='auto';t.style.height=Math.min(t.scrollHeight,120)+'px';}
+function scroll_(){setTimeout(()=>{const m=document.getElementById('msgs');m.scrollTop=m.scrollHeight;},40);}
+function now(){return new Date().toLocaleTimeString('he-IL',{hour:'2-digit',minute:'2-digit'});}
+function esc(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+function updCtx(t){
+  if(/אופק חדש/i.test(t)){ctx.contract='אופק חדש';document.getElementById('ctxC').textContent='חוזה: אופק חדש';}
+  if(/עוז לתמורה/i.test(t)){ctx.contract='עוז לתמורה';document.getElementById('ctxC').textContent='חוזה: עוז לתמורה';}
+  const m=t.match(/(\d+)\s*שנ/);
+  if(m){ctx.sen=m[1]+' שנים';document.getElementById('ctxS').textContent='ותק: '+m[1]+' שנים';}
+}
+
+/* old doSend removed */
+
+function buildSys(){
+  const profStr = profile.contract
+    ? `פרופיל שמור: חוזה ${{'ofek':'אופק חדש','oz':'עוז לתמורה','old':'חוזה ישן'}[profile.contract]||profile.contract}, ותק ${profile.seniority} שנים, תואר ${{'diploma':'דיפלומה','b':'ראשון','m':'שני','d':'דוקטורט'}[profile.degree]||'לא ידוע'}, ${profile.hours||'?'} שעות שבועיות.`
+    : '';
+  const ctxStr = ctx.contract
+    ? `הקשר שיחה זוהה: חוזה ${ctx.contract}${ctx.sen?', ותק '+ctx.sen:''}.`
+    : '';
+  const modeMap = {
+    general:'מצב שאלות כלליות',
+    payslip:'מצב ניתוח תלוש',
+    rights:'מצב זכויות',
+    letter:'מצב כתיבת מכתב',
+    tax:'מצב ייעוץ מס',
+    pension:'מצב פנסיה'
+  };
+
+  return `אתה "תלוש חכם" — סוכן AI מומחה לשכר וזכויות עובדי הוראה בישראל. אתה פועל כ**יועץ שכר פעיל ויוזם**, לא רק עונה לשאלות.
+
+${profStr}
+${ctxStr}
+מצב נוכחי: ${modeMap[mode]||'כללי'}
+
+═══════════════════════════════════
+🎯 אופן הפעולה שלך — חשוב מאוד
+═══════════════════════════════════
+אתה לא מחכה שישאלו אותך — אתה מוביל את השיחה:
+
+1. **בתחילת כל שיחה** — שאל שאלות בירור ספציפיות לפי הרשימה הבאה. אל תמשיך בלי המידע הזה.
+2. **זהה פערים במידע** — אם חסר מידע, עצור ושאל ספציפית.
+3. **דרוש מסמכים** — אמור למורה בדיוק מה להביא מפורטל עובדי ההוראה.
+4. **אחרי שיש מידע מלא** — נתח, חשב, ותן מסקנות ספציפיות עם ₪.
+
+═══════════════════════════════════
+📋 שאלות בירור חובה — שאל בסדר הזה
+═══════════════════════════════════
+אם לא ידוע עדיין, שאל:
+
+**א. זיהוי בסיסי:**
+- מה שם המורה ומה מספר זהותה? (לצרכי בדיקה בפורטל)
+- תחת איזה חוזה? (אופק חדש / עוז לתמורה / ישן)
+- כמה שנות ותק מוכרות? (שנות הוראה בפועל, לא גיל)
+- מה הדרגה האקדמית? (דיפלומה / תואר ראשון / שני / דוקטורט)
+
+**ב. פרטי עסקה:**
+- כמה שעות הוראה שבועיות בחוזה?
+- האם מחנך/ת כיתה? (כן/לא)
+- האם יש תפקיד נוסף? (מנטור / רכז / אחר)
+- מה סוג המוסד? (ממלכתי / חינוך מיוחד / ערבי / חרדי)
+
+**ג. הגדרת בעיה:**
+- מה גרם לך לפנות? (חשד לשגיאה / בדיקה שוטפת / שאלה ספציפית)
+- באיזה חודש/שנה התלוש שאנחנו בודקים?
+
+═══════════════════════════════════
+📂 מסמכים מפורטל עובדי ההוראה
+═══════════════════════════════════
+כשצריך לאמת נתונים, בקש מהמורה להביא מפורטל עובדי ההוראה (https://portal.education.gov.il):
+
+**לבדיקת ותק ודרגה:**
+→ "כנסי לפורטל → כרטיס עובד → לשונית 'ותק ודרגה' → צלמי מסך של הדרגה הנוכחית ומניין שנות הותק"
+
+**לבדיקת שכר:**
+→ "כנסי לפורטל → תלושי שכר → בחרי את החודש הרלוונטי → הורידי PDF"
+
+**לבדיקת הפרשות:**
+→ "כנסי לפורטל → הפרשות סוציאליות → צלמי מסך של הפרשות פנסיה וקרן השתלמות"
+
+**לבדיקת שעות:**
+→ "כנסי לפורטל → אישורי העסקה → ראי את מכסת השעות המאושרת"
+
+**לבדיקת זכויות מיוחדות:**
+→ "כנסי לפורטל → זכויות עובד → בדקי ימי מחלה צבורים, חופשות, ימי הכשרה"
+
+═══════════════════════════════════
+💰 טבלאות שכר עדכניות 2024-2025
+═══════════════════════════════════
+**אופק חדש:**
+0-2 שנות ותק: ₪7,800 | 3-5: ₪8,400 | 6-8: ₪9,100 | 9-11: ₪9,700
+12-14: ₪10,400 | 15-17: ₪11,200 | 18-20: ₪12,100 | 21-25: ₪13,200
+26-30: ₪14,500 | 31+: ₪16,200
+תוספות תואר: ראשון +₪800 | שני +₪1,600 | דוקטורט +₪2,800
+שעת מילוי מקום: ₪72.5
+
+**עוז לתמורה:**
+0-2: ₪8,200 | 3-5: ₪8,900 | 6-8: ₪9,600 | 9-11: ₪10,300
+12-14: ₪11,100 | 15-17: ₪12,000 | 18-20: ₪13,100 | 21-25: ₪14,400
+26-30: ₪15,800 | 31+: ₪17,500
+תוספות תואר: ראשון +₪900 | שני +₪1,800 | דוקטורט +₪3,200
+שעת מילוי מקום: ₪85.0
+
+**תוספות תפקיד (שני חוזים):**
+כיתת אם: אופק ₪820 / עוז ₪900
+מנטור: אופק ₪650 / עוז ₪750
+רכז מקצועי: אופק ₪1,200 / עוז ₪1,400
+חינוך מיוחד: אופק ₪900 / עוז ₪1,100
+
+**הפרשות חובה:**
+פנסיה: מעסיק 14.83% + עובד 6% = 20.83%
+קרן השתלמות: מעסיק 7.5% + עובד 2.5% = 10%
+פיצויים: 6% (חלק מהפנסיה)
+
+**מס הכנסה:**
+נקודת זיכוי: ₪242.7/חודש
+אשה: 2.25 נקודות בסיס | גבר: 2.75 נקודות
+ילד עד 5: +2 נקודות | ילד 6-17: +1 נקודה
+
+═══════════════════════════════════
+📝 איך לנתח תלוש שמועלה
+═══════════════════════════════════
+כשמועלית תמונה/PDF של תלוש:
+1. קרא כל שורה ורכיב
+2. השווה לטבלאות לפי הוותק והחוזה שזוהה
+3. סמן ✅ / ⚠️ / ❌ לכל רכיב
+4. חשב פוטנציאל גבייה = הפרש × 12 חודשים
+5. תן צעדים ספציפיים לתיקון
+
+═══════════════════════════════════
+✉️ כתיבת מכתבים
+═══════════════════════════════════
+כשמתבקש מכתב — כתוב מכתב מקצועי שכולל:
+- תאריך + פרטי המורה
+- גוף: עובדות + הסכומים + הפניה לסעיף החוק הספציפי
+- דרישה ברורה לתיקון + מועד לתגובה
+- סיום מכובד
+
+═══════════════════════════════════
+⚠️ כללי תמיד
+═══════════════════════════════════
+- ענה תמיד בעברית ברורה ופשוטה
+- אל תשאל שוב על מה שכבר נאמר בשיחה
+- כשיש מידע מלא — ענה עם מספרים ספציפיים בלבד
+- אם מורה מנסה לדלג על שאלת בירור — הסבר בנחת למה זה חשוב
+- לאחר ניתוח תמיד הצע: "רוצה שאכתוב מכתב לאחראי השכר?"
+
+הוראת שפה חשובה: ${LANGS[currentLang]?.bot_lang_instruction || 'ענה בעברית.'}`;
+}
+
+function md2html(t){
+  return t
+    .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\*(.*?)\*/g,'<em>$1</em>')
+    .replace(/`(.*?)`/g,'<code style="background:rgba(0,200,232,.1);padding:.1rem .28rem;border-radius:4px">$1</code>')
+    .replace(/^### (.*)$/gm,'<div style="font-size:.78rem;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.06em;margin:.75rem 0 .3rem">$1</div>')
+    .replace(/^## (.*)$/gm,'<div style="font-size:.9rem;font-weight:700;color:var(--white);margin:.75rem 0 .3rem">$1</div>')
+    .replace(/^- (.*)$/gm,'<div style="padding:.12rem 0 .12rem .7rem;border-right:2px solid var(--border);margin:.18rem 0;font-size:.82rem;color:var(--muted)">$1</div>')
+    .replace(/\n\n/g,'<br><br>').replace(/\n/g,'<br>');
+}
+
+function smartQRs(reply,txt){
+  if(/ותק|שנות|שנים/i.test(reply)&&!ctx.sen)return['5 שנות ותק','10 שנות ותק','20+ שנות ותק'];
+  if(/חוזה|אופק|עוז/i.test(reply)&&!ctx.contract)return['אופק חדש','עוז לתמורה'];
+  if(/שגיאה|חסר|לא נכון/i.test(reply))return['כתוב לי מכתב לאחראי שכר','מה הצעד הבא?','לפנות לארגון המורים?'];
+  if(/פנסיה|הפרשות/i.test(reply))return['כמה אני מפסיד לחודש?','מה לעשות?','בדוק גם קרן השתלמות'];
+  return [];
+}
+
+function getFallback(txt){
+  if(/ותק|שנים/i.test(txt))return 'כמה שנות ותק יש לך? ואיזה חוזה?';
+  if(/שכר|משכורת/i.test(txt))return 'כדי לחשב — תחת איזה חוזה את/ה עובד/ת?';
+  return 'שאלה חשובה. ספר/י עוד פרטים ואתן תשובה מדויקת.';
+}
+
+function loadHistory(type){
+  const msgs={
+    payslip:'ספר לי על התלוש האחרון שלי ומה לבדוק',
+    leave:'כמה ימי חופשה מגיעים לי השנה?',
+    calc:'תחשב את השכר שלי לשנת 2025',
+    letter:'עזור לי לכתוב מכתב לאחראי שכר'
+  };
+  if(msgs[type]){document.getElementById('ci').value=msgs[type];send();}
+}
+
+/* ═══════════════════════════════════════
+   CALCULATOR
+═══════════════════════════════════════ */
+function calc(){
+  const contract=document.getElementById('cc').value;
+  const sen=parseInt(document.getElementById('csen').value);
+  const deg=document.getElementById('cdeg').value;
+  const hrs=parseInt(document.getElementById('chr').value);
+  const extra=parseInt(document.getElementById('cex').value);
+  const hr=parseInt(document.getElementById('chr2').value);
+  const role=document.getElementById('crole').value;
+  const pts=parseFloat(document.getElementById('cpt').value);
+  const kids=parseInt(document.getElementById('ckids').value);
+  const gn=document.getElementById('cgn').value;
+  const penRate=parseFloat(document.getElementById('cpen').value);
+  const tbl=ST[contract];
+  const row=tbl.sen.find(r=>sen<=r.m)||tbl.sen[tbl.sen.length-1];
+  const base=row.b;
+  const degB=tbl.deg[deg]||0;
+  const hrB=hr*tbl.hr;
+  const roleB=role==='mentor'?tbl.men:role==='coord'?tbl.crd:role==='special_ed'?tbl.sp:0;
+  const extraP=extra*tbl.sub*4.33;
+  const gross=base+degB+hrB+roleB+extraP;
+  const penEmp=Math.round(gross*.06);
+  const penEr=Math.round(gross*penRate);
+  const trEmp=Math.round(gross*.025);
+  const trEr=Math.round(gross*.075);
+  const taxPts=pts+(gn==='f'?2.25:2.75)+(kids*.85);
+  const taxCredit=Math.round(taxPts*242.7);
+  let taxable=gross-penEmp,tax=0;
+  const br=[{u:7010,r:.1},{u:10060,r:.14},{u:16150,r:.2},{u:20950,r:.31},{u:42110,r:.35},{u:55270,r:.47},{u:Infinity,r:.5}];
+  let prev=0;
+  for(const b of br){if(taxable<=prev)break;tax+=(Math.min(taxable,b.u)-prev)*b.r;prev=b.u;}
+  tax=Math.max(0,Math.round(tax-taxCredit));
+  const nl=Math.round(Math.min(gross,46390)*.035+(Math.max(0,gross-46390)*.07));
+  const hi=Math.round(gross*.031);
+  const totalDed=penEmp+trEmp+tax+nl+hi;
+  const net=gross-totalDed;
+  const rp=document.getElementById('rp');rp.style.display='block';
+  const bw=(v,mx)=>Math.round((v/mx)*100)+'%';
+  const dN={diploma:'דיפלומה',b:'תואר ראשון',m:'תואר שני',d:'דוקטורט'};
+  rp.innerHTML=`
+    <div class="rp-head">
+      <h3>📊 תחשיב שכר מלא — ${tbl.name}</h3>
+      <div class="net-badge"><div class="nb-val">₪${net.toLocaleString()}</div><div class="nb-lbl">נטו לחודש</div></div>
+    </div>
+    <div class="bg">
+      <div class="bi"><div class="bilbl">שכר בסיס</div><div class="bival">₪${base.toLocaleString()}</div><div class="bisub">ותק ${sen} שנים</div></div>
+      <div class="bi"><div class="bilbl">תוספת תואר</div><div class="bival ok">+₪${degB.toLocaleString()}</div><div class="bisub">${dN[deg]}</div></div>
+      <div class="bi"><div class="bilbl">שעות מילוי מקום</div><div class="bival ok">+₪${Math.round(extraP).toLocaleString()}</div><div class="bisub">${extra} שע × ₪${tbl.sub}</div></div>
+      <div class="bi"><div class="bilbl">תוספות תפקיד</div><div class="bival ok">+₪${(hrB+roleB).toLocaleString()}</div><div class="bisub">${hr?'כיתת אם':''}${role&&role!=='0'?' + '+role:''||'אין'}</div></div>
+      <div class="bi"><div class="bilbl">ברוטו כולל</div><div class="bival inf">₪${Math.round(gross).toLocaleString()}</div><div class="bisub">לפני ניכויים</div></div>
+    </div>
+    <div style="margin-bottom:1.2rem">
+      ${[['ניכויים סה"כ',totalDed,gross,'var(--red)'],['פנסיה עובד 6%',penEmp,gross,'var(--orange)'],['מס הכנסה',tax,gross,'var(--red)'],['בטל + בריאות',nl+hi,gross,'rgba(255,138,61,.7)']].map(([l,v,mx,c])=>`
+      <div class="cbar-item"><div class="cb-head"><span>${l}</span><span style="color:var(--red)">₪${v.toLocaleString()}</span></div>
+      <div class="cb-track"><div class="cb-fill" style="background:${c};width:0%" data-w="${bw(v,mx)}"></div></div></div>`).join('')}
+    </div>
+    <div class="ded-r"><span class="ded-n">ניכוי פנסיה (6%)</span><span class="ded-v minus">−₪${penEmp.toLocaleString()}</span></div>
+    <div class="ded-r"><span class="ded-n">ניכוי קרן השתלמות (2.5%)</span><span class="ded-v minus">−₪${trEmp.toLocaleString()}</span></div>
+    <div class="ded-r"><span class="ded-n">מס הכנסה</span><span class="ded-v minus">−₪${tax.toLocaleString()}</span></div>
+    <div class="ded-r"><span class="ded-n">ביטוח לאומי</span><span class="ded-v minus">−₪${nl.toLocaleString()}</span></div>
+    <div class="ded-r"><span class="ded-n">ביטוח בריאות</span><span class="ded-v minus">−₪${hi.toLocaleString()}</span></div>
+    <div class="net-r"><span class="nr-lbl">🏦 שכר נטו לתשלום</span><span class="nr-val">₪${net.toLocaleString()}</span></div>
+    <div style="margin-top:1.1rem;padding-top:1.1rem;border-top:1px solid var(--border)">
+      <div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.7rem">הפרשות מעסיק (נוספות לעלות)</div>
+      <div class="ded-r"><span class="ded-n">פנסיה מעסיק (${Math.round(penRate*100)}%)</span><span class="ded-v plus">₪${penEr.toLocaleString()}</span></div>
+      <div class="ded-r"><span class="ded-n">קרן השתלמות מעסיק (7.5%)</span><span class="ded-v plus">₪${trEr.toLocaleString()}</span></div>
+      <div class="ded-r"><span class="ded-n" style="font-weight:700">עלות מעסיק כוללת</span><span class="ded-v plus" style="font-size:.95rem;font-weight:800">₪${(gross+penEr+trEr).toLocaleString()}</span></div>
+    </div>
+    <div style="margin-top:1.1rem;display:flex;gap:.6rem;flex-wrap:wrap">
+      <button onclick="go('chat');setTimeout(()=>{document.getElementById('ci').value='חישבתי שכר — עזור לי לבדוק אם זה נכון';send()},400)"
+        style="flex:1;min-width:170px;background:var(--teal);color:var(--bg);border:none;padding:.7rem;border-radius:9px;font-weight:800;cursor:pointer;font-family:var(--font);font-size:.82rem">🤖 שאל את הבוט</button>
+      <button onclick="openLetMod()"
+        style="flex:1;min-width:170px;background:transparent;border:1px solid var(--border);color:var(--muted);padding:.7rem;border-radius:9px;font-weight:700;cursor:pointer;font-family:var(--font);font-size:.82rem">✉️ צור מכתב תלונה</button>
+    </div>`;
+  rp.scrollIntoView({behavior:'smooth',block:'start'});
+  setTimeout(()=>rp.querySelectorAll('.cb-fill').forEach(el=>el.style.width=el.dataset.w),120);
+}
+
+/* ═══════════════════════════════════════
+   ANALYZER
+═══════════════════════════════════════ */
+function dzOver(e){e.preventDefault();document.getElementById('dz').classList.add('ov');}
+function dzDrop(e){e.preventDefault();document.getElementById('dz').classList.remove('ov');const f=e.dataTransfer.files[0];if(f)runAz(f);}
+function startAz(e){const f=e.target.files[0];if(f)runAz(f);}
+
+async function runAz(file){
+  document.getElementById('azArea').classList.add('show');
+  document.getElementById('frep').style.display='none';
+  const steps=['pa1','pa2','pa3','pa4','pa5','pa6'];
+  for(let i=0;i<steps.length;i++){
+    await new Promise(r=>setTimeout(r,450+Math.random()*350));
+    if(i>0)document.getElementById(steps[i-1]).className='ps dn';
+    document.getElementById(steps[i]).className='ps ac';
+  }
+  await new Promise(r=>setTimeout(r,350));
+  steps.forEach(s=>document.getElementById(s).className='ps dn');
+  try{
+    const r=await fetch('/api/analyze',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({payslipText:`קובץ: ${file.name}`,teacherProfile:profile})
+    });
+    const data=await r.json();
+    renderReport(data,file.name);
+  }catch{renderReport(getMock(),file.name);}
+}
+
+function getMock(){
+  return{teacherInfo:{contract:'אופק חדש',seniority:'10 שנים',grossSalary:11500,netSalary:8800,institution:'ממלכתי'},
+    score:76,scoreLabel:'יש הערות חשובות',
+    issues:[
+      {status:'ok',title:'שכר בסיס',desc:'₪9,700 — נכון לפי ותק 10 שנים + ₪800 תואר ראשון',action:''},
+      {status:'warn',title:'שעות מילוי מקום',desc:'₪74.7/שעה במקום ₪72.5 — בדוק שאין חישוב עודף',action:'אשר עם אחראי שכר את מספר השעות המדויק'},
+      {status:'err',title:'קרן השתלמות',desc:'מעסיק מפריש 5% בלבד — צריך 7.5% לפי הסכם קיבוצי (הפרש: כ-₪245/חודש)',action:'פנה מיד לחשבות עם ציון סעיף 14 להסכם הקיבוצי'},
+      {status:'ok',title:'פנסיה',desc:'הפרשה מלאה 20.83% — תקין',action:''},
+      {status:'warn',title:'נקודות זיכוי מס',desc:'2.25 נקודות — ייתכן זכאות ל-½ נקודה נוספת (= ₪121/חודש)',action:'הגש טופס 116 לפקיד מס הכנסה'},
+      {status:'ok',title:'ביטוח לאומי ובריאות',desc:'ניכויים תקינים',action:''}
+    ],
+    potentialRecovery:366,annualRecovery:4392,urgentAction:'פנה לחשבות — קרן השתלמות חסרה ₪245/חודש'};
+}
+
+function renderReport(r,fname){
+  const ic={ok:'✅',warn:'⚠️',err:'❌'};
+  const el=document.getElementById('frep');
+  el.innerHTML=`
+    <div class="rep-hd">
+      <span style="font-size:1.2rem">📋</span>
+      <h3>דוח ניתוח: ${fname}</h3>
+      <div class="rep-score"><div class="rs-val">${r.score||'—'}/100</div><div class="rs-lbl">${r.scoreLabel||''}</div></div>
+    </div>
+    <div class="rep-bd">
+      <div class="rep-sec">
+        <div class="rsec-t">👤 נתוני מורה מהתלוש</div>
+        <div style="display:flex;gap:.7rem;flex-wrap:wrap;margin-bottom:1rem">
+          ${[['חוזה',r.teacherInfo?.contract||'—'],['ותק',r.teacherInfo?.seniority||'—'],['ברוטו','₪'+(r.teacherInfo?.grossSalary||0).toLocaleString()],['נטו','₪'+(r.teacherInfo?.netSalary||0).toLocaleString()]].map(([l,v])=>`<div class="bi" style="flex:1;min-width:110px"><div class="bilbl">${l}</div><div class="bival" style="font-size:1rem">${v}</div></div>`).join('')}
+        </div>
+      </div>
+      <div class="rep-sec">
+        <div class="rsec-t">🔍 בדיקת רכיבים</div>
+        ${(r.issues||[]).map(i=>`<div class="iss ${i.status}">
+          <div class="iss-hd"><span>${ic[i.status]||'•'}</span><h4>${i.title}</h4><span class="rbadge ${i.status==='ok'?'bOk':i.status==='warn'?'bWarn':'bErr'}">${i.status==='ok'?'תקין':i.status==='warn'?'לבדיקה':'שגוי'}</span></div>
+          <div class="iss-desc">${i.desc}</div>
+          ${i.action?`<div class="iss-act">→ ${i.action}</div>`:''}
+        </div>`).join('')}
+      </div>
+      ${r.potentialRecovery?`
+      <div class="alrt aw"><div class="alrt-ic">💰</div><div class="alrt-b">
+        <h5>פוטנציאל גבייה: ₪${r.potentialRecovery.toLocaleString()}/חודש (₪${(r.annualRecovery||r.potentialRecovery*12).toLocaleString()}/שנה)</h5>
+        <p>על בסיס השגיאות שנמצאו — מגיע לך יותר. ניתן לדרוש הפרשי שנים אחורה.</p>
+      </div></div>`:''}
+      ${r.urgentAction?`<div class="alrt ae" style="margin-top:.7rem"><div class="alrt-ic">🚨</div><div class="alrt-b"><h5>פעולה דחופה</h5><p>${r.urgentAction}</p></div></div>`:''}
+      <div style="margin-top:1.2rem;display:flex;gap:.6rem;flex-wrap:wrap">
+        <button onclick="openLetMod()" style="flex:1;min-width:160px;background:var(--teal);color:var(--bg);border:none;padding:.7rem;border-radius:9px;font-weight:800;cursor:pointer;font-family:var(--font);font-size:.82rem">✉️ צור מכתב תלונה</button>
+        <button onclick="go('chat');setTimeout(()=>{document.getElementById('ci').value='ניתחתי את התלוש שלי ויש שגיאות — מה עושים?';send()},400)" style="flex:1;min-width:160px;background:transparent;border:1px solid var(--border);color:var(--muted);padding:.7rem;border-radius:9px;font-weight:700;cursor:pointer;font-family:var(--font);font-size:.82rem">🤖 שאל את הבוט</button>
+      </div>
+    </div>`;
+  el.style.display='block';
+  el.scrollIntoView({behavior:'smooth'});
+}
+
+/* ═══════════════════════════════════════
+   RIGHTS
+═══════════════════════════════════════ */
+let activeCat='all';
+function renderRts(){
+  const q=document.getElementById('rsi')?.value?.toLowerCase()||'';
+  const g=document.getElementById('rg');g.innerHTML='';
+  RIGHTS.filter(r=>(activeCat==='all'||r.cat===activeCat)&&(!q||r.title.toLowerCase().includes(q)||r.short.toLowerCase().includes(q)))
+  .forEach(r=>{
+    const d=document.createElement('div');d.className='rcard2';
+    d.innerHTML=`<span class="rcbadge ${r.badge}">${r.label}</span><h3>${r.title}</h3><p>${r.short}</p><span class="rc-more">קרא עוד →</span>`;
+    d.onclick=()=>openMod(r);g.appendChild(d);
+  });
+}
+function fCat(c,el){activeCat=c;document.querySelectorAll('.cpill').forEach(p=>p.classList.remove('on'));el.classList.add('on');renderRts();}
+function fRts(){renderRts();}
+function openMod(r){
+  document.getElementById('modT').textContent=r.title;
+  document.getElementById('modB').innerHTML=`<span class="rcbadge ${r.badge}" style="margin-bottom:1rem;display:inline-block">${r.label}</span>${r.full}`;
+  document.getElementById('movl').classList.add('op');
+  document.body.style.overflow='hidden';
+}
+function closeMod(e){if(e.target===document.getElementById('movl'))closeModD();}
+function closeModD(){document.getElementById('movl').classList.remove('op');document.body.style.overflow='';}
+function modToBot(){
+  const t=document.getElementById('modT').textContent;
+  closeModD();go('chat');
+  setTimeout(()=>{document.getElementById('ci').value='ספר לי יותר על: '+t;send();},350);
+}
+
+/* ═══════════════════════════════════════
+   UPDATES
+═══════════════════════════════════════ */
+function renderUpd(){
+  const g=document.getElementById('ug');g.innerHTML='';
+  UPDATES.forEach(u=>{
+    const d=document.createElement('div');d.className='ucard';
+    d.innerHTML=`<div class="uc-hd"><div class="uc-dt">📅 ${u.date}</div><h3>${u.title}</h3></div>
+    <div class="uc-tags">${u.tags.map(t=>`<span class="utag">${t}</span>`).join('')}</div>
+    <div class="uc-body">${u.body}</div><div class="uc-impact">💡 ${u.impact}</div>`;
+    d.onclick=()=>{go('chat');setTimeout(()=>{document.getElementById('ci').value='ספר לי על: '+u.title;send();},350);};
+    g.appendChild(d);
+  });
+}
+
+/* ═══════════════════════════════════════
+   LETTER GENERATOR
+═══════════════════════════════════════ */
+let letType='salary_error';
+function openLetMod(){document.getElementById('lovl').classList.add('op');document.body.style.overflow='hidden';}
+function closeLet(e){if(e.target===document.getElementById('lovl'))closeLetD();}
+function closeLetD(){document.getElementById('lovl').classList.remove('op');document.body.style.overflow='';document.getElementById('letOut').className='letter-output';document.getElementById('letOut').textContent='';}
+function setLetType(t,btn){letType=t;document.querySelectorAll('.ltype-btn').forEach(b=>b.classList.remove('on'));btn.classList.add('on');}
+
+async function generateLetter(){
+  const btn=document.getElementById('genLetBtn');
+  btn.textContent='מייצר מכתב...';btn.disabled=true;
+  try{
+    const r=await fetch('/api/letter',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({letterType:letType,teacherProfile:profile,issues:[]})
+    });
+    const d=await r.json();
+    const out=document.getElementById('letOut');
+    out.textContent=d.letter||getMockLetter();
+    out.classList.add('show');
+  }catch{
+    const out=document.getElementById('letOut');
+    out.textContent=getMockLetter();out.classList.add('show');
+  }finally{btn.textContent='⚡ צור מכתב';btn.disabled=false;}
+}
+
+function getMockLetter(){
+  const name=profile.name||'[שם המורה]';
+  const contract={ofek:'אופק חדש',oz:'עוז לתמורה',old:'חוזה ישן'}[profile.contract]||'[חוזה]';
+  return `${new Date().toLocaleDateString('he-IL')}
+
+לכבוד
+אחראי השכר
+[שם בית הספר / הרשות המקומית]
+
+א.נ.,
+
+הנדון: בקשה לבדיקה ותיקון חישוב שכר — ${name}
+
+אני הח"מ, ${name}, מורה תחת חוזה ${contract} עם ${profile.seniority||'__'} שנות ותק, פונה בזאת לבקש בדיקה ותיקון של חישוב שכרי.
+
+לאחר בדיקה מדוקדקת של תלוש משכורתי לחודש ${new Date().toLocaleDateString('he-IL',{month:'long',year:'numeric'})}, מצאתי כי קיים פער בין הסכום המשולם לבין הסכום המגיע לי על פי הסכם ${contract} וההסכמים הקיבוציים החלים.
+
+הפערים שזוהו:
+1. הפרשות לקרן השתלמות — שיעור הפרשת המעסיק אינו עומד בדרישות סעיף 14 להסכם הקיבוצי הקובע 7.5%.
+2. חישוב שכר שעות מילוי מקום — נראה כי בסיס החישוב אינו תואם את השכר השעתי הנכון לוותק שלי.
+
+אבקשכם לבדוק את הנושא בהקדם האפשרי ולהסדיר את התשלומים הנדרשים, כולל הפרשים רטרואקטיביים.
+
+אני עומד/ת לרשותכם לכל בירור.
+
+בכבוד רב,
+${name}
+טל: [מספר טלפון]
+מייל: [כתובת מייל]`;
+}
+
+function copyLetter(){
+  const t=document.getElementById('letOut').textContent;
+  if(!t)return toast('אין מכתב להעתקה','twarn');
+  navigator.clipboard.writeText(t).then(()=>toast('המכתב הועתק ✓','tok')).catch(()=>toast('לא ניתן להעתיק','twarn'));
+}
+
+/* ═══════════════════════════════════════
+   LANGUAGE
+═══════════════════════════════════════ */
+
+/* ══ LANGUAGE SYSTEM ══ */
+const LANGS = {
+  he:{
+    name:'עברית', dir:'rtl',
+    nav_home:'🏠 בית', nav_chat:'🤖 סוכן AI', nav_calc:'🧮 מחשבון',
+    nav_az:'📄 ניתוח תלוש', nav_rights:'⚖️ זכויות', nav_upd:'🔄 הסכמים',
+    nav_profile:'👤 הפרופיל שלי', nav_cta:'בדוק תלוש ⚡',
+    chat_placeholder:'שאל כל שאלה על שכר, זכויות, תלוש...',
+    hero_title:'המשכורת שלך<br><em>שקופה ומוגנת</em>',
+    hero_sub:'הפלטפורמה החכמה לעובדי הוראה. בוט AI שמכיר כל סעיף בכל חוזה.',
+    btn_chat:'⚡ שוחח עם הסוכן החכם', btn_az:'📄 העלה תלוש', btn_calc:'🧮 מחשבון שכר',
+    agent_title:'סוכן תלוש חכם', agent_sub:'מומחה לשכר ולזכויות עובדי הוראה · AI',
+    lang_changed:'שפת הממשק שונתה לעברית ✓',
+    bot_lang_instruction:'ענה תמיד בעברית בלבד.'
+  },
+  en:{
+    name:'English', dir:'ltr',
+    nav_home:'🏠 Home', nav_chat:'🤖 AI Agent', nav_calc:'🧮 Calculator',
+    nav_az:'📄 Analyze Payslip', nav_rights:'⚖️ Rights', nav_upd:'🔄 Agreements',
+    nav_profile:'👤 My Profile', nav_cta:'Check Payslip ⚡',
+    chat_placeholder:'Ask anything about salary, rights, payslip...',
+    hero_title:'Your Salary<br><em>Transparent & Protected</em>',
+    hero_sub:'The smart platform for teaching staff. AI that knows every clause in every contract.',
+    btn_chat:'⚡ Chat with AI Agent', btn_az:'📄 Upload Payslip', btn_calc:'🧮 Salary Calculator',
+    agent_title:'Taloosh Chacham Agent', agent_sub:'Expert in teacher salary & rights · AI',
+    lang_changed:'Language changed to English ✓',
+    bot_lang_instruction:'Always respond in English only.'
+  },
+  ar:{
+    name:'العربية', dir:'rtl',
+    nav_home:'🏠 الرئيسية', nav_chat:'🤖 المساعد', nav_calc:'🧮 الحاسبة',
+    nav_az:'📄 تحليل الراتب', nav_rights:'⚖️ الحقوق', nav_upd:'🔄 الاتفاقيات',
+    nav_profile:'👤 ملفي', nav_cta:'افحص الراتب ⚡',
+    chat_placeholder:'اسأل عن الراتب، الحقوق، قسيمة الراتب...',
+    hero_title:'راتبك<br><em>شفاف ومحمي</em>',
+    hero_sub:'المنصة الذكية لموظفي التعليم. ذكاء اصطناعي يعرف كل بند في كل عقد.',
+    btn_chat:'⚡ تحدث مع المساعد', btn_az:'📄 رفع قسيمة راتب', btn_calc:'🧮 حاسبة الراتب',
+    agent_title:'مساعد تلوش حاشام', agent_sub:'خبير في رواتب وحقوق موظفي التعليم · AI',
+    lang_changed:'تم تغيير اللغة إلى العربية ✓',
+    bot_lang_instruction:'أجب دائماً باللغة العربية فقط.'
+  },
+  ru:{
+    name:'Русский', dir:'ltr',
+    nav_home:'🏠 Главная', nav_chat:'🤖 ИИ Агент', nav_calc:'🧮 Калькулятор',
+    nav_az:'📄 Анализ расчётки', nav_rights:'⚖️ Права', nav_upd:'🔄 Соглашения',
+    nav_profile:'👤 Мой профиль', nav_cta:'Проверить расчётку ⚡',
+    chat_placeholder:'Спросите о зарплате, правах, расчётном листке...',
+    hero_title:'Ваша зарплата<br><em>прозрачна и защищена</em>',
+    hero_sub:'Умная платформа для педагогов. ИИ знает каждый пункт каждого договора.',
+    btn_chat:'⚡ Чат с ИИ агентом', btn_az:'📄 Загрузить расчётку', btn_calc:'🧮 Калькулятор',
+    agent_title:'Агент Талуш Хахам', agent_sub:'Эксперт по зарплате учителей · ИИ',
+    lang_changed:'Язык изменён на русский ✓',
+    bot_lang_instruction:'Всегда отвечай только на русском языке.'
+  },
+  fr:{
+    name:'Français', dir:'ltr',
+    nav_home:'🏠 Accueil', nav_chat:'🤖 Agent IA', nav_calc:'🧮 Calculatrice',
+    nav_az:'📄 Analyser la fiche', nav_rights:'⚖️ Droits', nav_upd:'🔄 Accords',
+    nav_profile:'👤 Mon profil', nav_cta:'Vérifier la fiche ⚡',
+    chat_placeholder:"Posez vos questions sur le salaire, les droits...",
+    hero_title:'Votre salaire<br><em>transparent et protégé</em>',
+    hero_sub:"La plateforme intelligente pour les enseignants. IA qui connaît chaque clause.",
+    btn_chat:"⚡ Discuter avec l'agent IA", btn_az:'📄 Importer une fiche', btn_calc:'🧮 Calculatrice',
+    agent_title:'Agent Taloosh Hacham', agent_sub:"Expert en salaires et droits des enseignants · IA",
+    lang_changed:'Langue changée en français ✓',
+    bot_lang_instruction:'Réponds toujours en français uniquement.'
+  },
+  am:{
+    name:'አማርኛ', dir:'ltr',
+    nav_home:'🏠 ዋና', nav_chat:'🤖 AI ረዳት', nav_calc:'🧮 ካልኩሌተር',
+    nav_az:'📄 ደረሰኝ ትንተና', nav_rights:'⚖️ መብቶች', nav_upd:'🔄 ስምምነቶች',
+    nav_profile:'👤 መገለጫዬ', nav_cta:'ደረሰኝ ፈትሽ ⚡',
+    chat_placeholder:'ስለ ደሞዝ፣ መብቶች፣ ደረሰኝ ይጠይቁ...',
+    hero_title:'ደሞዝዎ<br><em>ግልፅ እና ጥበቃ የተደረገ</em>',
+    hero_sub:'ለመምህራን ብልህ መድረክ። AI እያንዳንዱን ውል ያውቃል።',
+    btn_chat:'⚡ ከ AI ጋር ይነጋገሩ', btn_az:'📄 ደረሰኝ ስቀሉ', btn_calc:'🧮 ካልኩሌተር',
+    agent_title:'ታሉሽ ሃቻም ረዳት', agent_sub:'የመምህራን ደሞዝ ባለሙያ · AI',
+    lang_changed:'ቋንቋ ወደ አማርኛ ተቀይሯል ✓',
+    bot_lang_instruction:'Always respond in Amharic (አማርኛ) only.'
+  }
+};
+
+let currentLang = 'he';
+
+function chLang(l){
+  if(!LANGS[l]) return;
+  currentLang = l;
+  const L = LANGS[l];
+  
+  // Change document direction
+  document.documentElement.lang = l;
+  document.documentElement.dir = L.dir;
+  
+  // Update nav tabs
+  const nt = (id, txt) => { const el=document.getElementById('nt-'+id); if(el) el.innerHTML=txt; };
+  nt('home', L.nav_home);
+  nt('chat', L.nav_chat);
+  nt('calc', L.nav_calc);
+  nt('az',   L.nav_az);
+  nt('rights', L.nav_rights);
+  nt('upd',  L.nav_upd);
+  
+  // Update nav CTA
+  const cta = document.querySelector('.nav-cta');
+  if(cta) cta.textContent = L.nav_cta;
+  
+  // Update chat input placeholder
+  const inp = document.getElementById('ci');
+  if(inp) inp.placeholder = L.chat_placeholder;
+  
+  // Update agent header
+  const agTitle = document.querySelector('.ag-inf h4');
+  const agSub = document.getElementById('agSub');
+  if(agTitle) agTitle.textContent = L.agent_title;
+  if(agSub) agSub.textContent = L.agent_sub;
+  
+  // Update hero if visible
+  const heroH1 = document.querySelector('.hero h1');
+  if(heroH1) heroH1.innerHTML = L.hero_title;
+  const heroP = document.querySelector('.hero-p');
+  if(heroP) heroP.textContent = L.hero_sub;
+  
+  // Update hero buttons
+  const heroBtns = document.querySelectorAll('.hero-btns button');
+  if(heroBtns[0]) heroBtns[0].innerHTML = L.btn_chat;
+  if(heroBtns[1]) heroBtns[1].innerHTML = L.btn_az;
+  if(heroBtns[2]) heroBtns[2].innerHTML = L.btn_calc;
+  
+  // Reset chat history so bot uses new language from next message
+  msgs_hist = [];
+  
+  // Notify user
+  if(document.getElementById('msgs').children.length > 0){
+    addBot(L.lang_changed + ' — השיחה אופסה כדי שהבוט יענה בשפה החדשה מיד.');
+  }
+  
+  toast(L.lang_changed, 'tok');
+  localStorage.setItem('tc_lang', l);
+}
+
+function initLang(){
+  const saved = localStorage.getItem('tc_lang') || 'he';
+  if(saved !== 'he'){
+    document.getElementById('gLang').value = saved;
+    chLang(saved);
+  }
+}
+
+// Override buildSys to inject language instruction
+const _origBuildSys = buildSys;
+
+
+/* ═══════════════════════════════════════
+   TOAST
+═══════════════════════════════════════ */
+function toast(msg,type='tok'){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.className='toast '+type+' show';
+  setTimeout(()=>t.classList.remove('show'),3200);
+}
+
+/* ═══════════════════════════════════════
+   INIT
+═══════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', initApp);
+
+/* ════════════════════════════════════════
+   SERVER CONFIG
+════════════════════════════════════════ */
+const SERVER = window.location.origin; // same origin
+let authToken = localStorage.getItem('tc_token') || '';
+let currentUser = null;
+let currentConvId = null;
+
+/* ════════════════════════════════════════
+   AUTH SYSTEM
+════════════════════════════════════════ */
+function showAuth(){
+  document.getElementById('authOverlay').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function hideAuth(){
+  document.getElementById('authOverlay').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+function switchAuthTab(tab){
+  document.getElementById('loginTab').classList.toggle('on', tab==='login');
+  document.getElementById('registerTab').classList.toggle('on', tab==='register');
+  document.getElementById('loginForm').style.display = tab==='login'?'block':'none';
+  document.getElementById('registerForm').style.display = tab==='register'?'block':'none';
+  document.getElementById('authErr').classList.remove('show');
+}
+
+function showAuthErr(msg){
+  const el = document.getElementById('authErr');
+  el.textContent = msg;
+  el.classList.add('show');
+}
+
+async function doLogin(){
+  const email = document.getElementById('loginEmail').value.trim();
+  const pass = document.getElementById('loginPass').value;
+  if(!email||!pass){ showAuthErr('נא למלא אימייל וסיסמה'); return; }
+  
+  const btn = document.getElementById('loginBtn');
+  btn.disabled = true; btn.textContent = 'מתחבר...';
+  
+  try{
+    const r = await fetch(SERVER+'/api/auth/login', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({email, password:pass})
+    });
+    const d = await r.json();
+    if(!r.ok){ showAuthErr(d.error||'שגיאה'); return; }
+    onLoginSuccess(d);
+  }catch(e){ showAuthErr('שגיאת חיבור לשרת'); }
+  finally{ btn.disabled=false; btn.textContent='⚡ התחבר/י'; }
+}
+
+async function doRegister(){
+  const name = document.getElementById('regName').value.trim();
+  const email = document.getElementById('regEmail').value.trim();
+  const pass = document.getElementById('regPass').value;
+  if(!email||!pass){ showAuthErr('נא למלא אימייל וסיסמה'); return; }
+
+  const btn = document.getElementById('registerBtn');
+  btn.disabled = true; btn.textContent = 'יוצר חשבון...';
+
+  try{
+    const r = await fetch(SERVER+'/api/auth/register', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({email, password:pass, name})
+    });
+    const d = await r.json();
+    if(!r.ok){ showAuthErr(d.error||'שגיאה'); return; }
+    onLoginSuccess(d);
+  }catch(e){ showAuthErr('שגיאת חיבור לשרת'); }
+  finally{ btn.disabled=false; btn.textContent='✨ צור/י חשבון חינמי'; }
+}
+
+function onLoginSuccess(data){
+  authToken = data.token;
+  currentUser = data.user;
+  localStorage.setItem('tc_token', authToken);
+  hideAuth();
+  updateUserUI();
+  loadUserProfile();
+  loadConversations();
+  toast('ברוך/ה הבא/ה, ' + (currentUser.name||currentUser.email) + '! 👋', 'tok');
+  if(document.getElementById('msgs').children.length === 0) initChat();
+}
+
+function doLogout(){
+  authToken = '';
+  currentUser = null;
+  currentConvId = null;
+  localStorage.removeItem('tc_token');
+  updateUserUI();
+  document.getElementById('msgs').innerHTML = '';
+  document.getElementById('chatHistory').innerHTML = '';
+  showAuth();
+  closeUserMenu();
+  toast('התנתקת בהצלחה', 'tok');
+}
+
+function updateUserUI(){
+  const navArea = document.getElementById('navAuthArea');
+  const userWrap = document.getElementById('userMenuWrap');
+  if(currentUser){
+    navArea.style.display = 'none';
+    userWrap.style.display = 'flex';
+    document.getElementById('userNameBtn').textContent = currentUser.name||currentUser.email.split('@')[0];
+  } else {
+    navArea.style.display = 'flex';
+    userWrap.style.display = 'none';
+  }
+}
+
+function toggleUserMenu(){
+  document.getElementById('userDropdown').classList.toggle('open');
+}
+function closeUserMenu(){
+  document.getElementById('userDropdown').classList.remove('open');
+}
+document.addEventListener('click', e => {
+  if(!e.target.closest('.user-menu-wrap')) closeUserMenu();
+});
+
+/* ════════════════════════════════════════
+   SERVER API HELPERS
+════════════════════════════════════════ */
+async function apiGet(path){
+  const r = await fetch(SERVER+path, { headers:{'Authorization':'Bearer '+authToken} });
+  if(r.status===401){ doLogout(); throw new Error('פג תוקף'); }
+  return r.json();
+}
+
+async function apiPost(path, body){
+  const r = await fetch(SERVER+path, {
+    method:'POST',
+    headers:{'Content-Type':'application/json','Authorization':'Bearer '+authToken},
+    body: JSON.stringify(body)
+  });
+  if(r.status===401){ doLogout(); throw new Error('פג תוקף'); }
+  return r.json();
+}
+
+async function apiDelete(path){
+  const r = await fetch(SERVER+path, {
+    method:'DELETE', headers:{'Authorization':'Bearer '+authToken}
+  });
+  return r.json();
+}
+
+/* ════════════════════════════════════════
+   PROFILE — load from server
+════════════════════════════════════════ */
+async function loadUserProfile(){
+  if(!authToken) return;
+  try{
+    const p = await apiGet('/api/profile');
+    if(p && p.contract){
+      profile = p;
+      // Update context tags
+      const cName = {ofek:'אופק חדש',oz:'עוז לתמורה',old:'חוזה ישן'}[p.contract]||p.contract;
+      document.getElementById('ctxC').textContent = 'חוזה: '+cName;
+      document.getElementById('ctxS').textContent = 'ותק: '+(p.seniority||'?')+' שנים';
+    }
+  }catch(e){ console.error('Profile load error:', e); }
+}
+
+async function saveProfileToServer(){
+  if(!authToken) return;
+  try{
+    await apiPost('/api/profile', profile);
+  }catch(e){ console.error('Profile save error:', e); }
+}
+
+// Override saveProfile to also save to server
+const _origSaveProfile = saveProfile;
+function saveProfile(){
+  // Get values from form
+  profile = {
+    name: document.getElementById('pName').value,
+    contract: document.getElementById('pContract').value,
+    seniority: parseInt(document.getElementById('pSen').value),
+    degree: document.getElementById('pDegree').value,
+    subject: document.getElementById('pSubject').value,
+    institution: document.getElementById('pInst').value,
+    hours: parseInt(document.getElementById('pHours').value),
+    gender: document.getElementById('pGender').value,
+    kids: parseInt(document.getElementById('pKids').value)
+  };
+  localStorage.setItem('tcp', JSON.stringify(profile));
+  loadProfile();
+  closeProDirect();
+  saveProfileToServer();
+  toast('פרופיל נשמר ✓','tok');
+}
+
+/* ════════════════════════════════════════
+   CONVERSATIONS
+════════════════════════════════════════ */
+async function loadConversations(){
+  if(!authToken) return;
+  try{
+    const convs = await apiGet('/api/conversations');
+    renderConversations(convs);
+  }catch(e){ console.error('Convs error:', e); }
+}
+
+function renderConversations(convs){
+  const hist = document.getElementById('chatHistory');
+  hist.innerHTML = '';
+
+  // New conversation button
+  const newBtn = document.createElement('button');
+  newBtn.className = 'conv-new-btn';
+  newBtn.textContent = '+ שיחה חדשה';
+  newBtn.onclick = startNewConversation;
+  hist.appendChild(newBtn);
+
+  if(!convs.length){
+    hist.innerHTML += '<div style="font-size:.72rem;color:var(--muted);padding:.3rem .4rem">אין שיחות עדיין</div>';
+    return;
+  }
+
+  convs.forEach(c => {
+    const d = document.createElement('div');
+    d.className = 'conv-item' + (c.id===currentConvId?' active':'');
+    d.dataset.id = c.id;
+    d.innerHTML = `<span class="conv-item-title">${c.title||'שיחה'}</span>
+      <button class="conv-item-del" onclick="event.stopPropagation();deleteConv('${c.id}')">✕</button>`;
+    d.onclick = () => loadConversation(c.id);
+    hist.appendChild(d);
+  });
+}
+
+async function startNewConversation(){
+  if(!authToken){ showAuth(); return; }
+  try{
+    const c = await apiPost('/api/conversations', {title:'שיחה חדשה'});
+    currentConvId = c.id;
+    document.getElementById('msgs').innerHTML = '';
+    msgs_hist = [];
+    loadConversations();
+    initChat();
+  }catch(e){ toast('שגיאה ביצירת שיחה','terr'); }
+}
+
+async function loadConversation(id){
+  if(!authToken) return;
+  try{
+    currentConvId = id;
+    const messages = await apiGet('/api/conversations/'+id+'/messages');
+    document.getElementById('msgs').innerHTML = '';
+    msgs_hist = [];
+    
+    messages.forEach(m => {
+      if(m.role==='user'){
+        if(typeof m.content==='string') addUM(m.content);
+        msgs_hist.push({role:'user', content:m.content});
+      } else {
+        // Bot message - render without animation delay for history
+        const d = document.createElement('div');
+        d.className = 'msg b';
+        d.innerHTML = `<div class="mav">ת</div><div class="mwrap"><div class="bub">${md2html(typeof m.content==='string'?m.content:'')}</div><div class="mmeta">${new Date(m.created_at*1000).toLocaleDateString('he-IL')} · תלוש חכם AI</div></div>`;
+        document.getElementById('msgs').appendChild(d);
+        msgs_hist.push({role:'assistant', content:m.content});
+      }
+    });
+
+    scroll_();
+    loadConversations(); // refresh to show active
+    toast('שיחה נטענה ✓','tok');
+  }catch(e){ toast('שגיאה בטעינת שיחה','terr'); }
+}
+
+async function deleteConv(id){
+  if(!confirm('למחוק שיחה זו?')) return;
+  try{
+    await apiDelete('/api/conversations/'+id);
+    if(currentConvId===id){
+      currentConvId = null;
+      document.getElementById('msgs').innerHTML = '';
+      msgs_hist = [];
+    }
+    loadConversations();
+    toast('שיחה נמחקה','tok');
+  }catch(e){ toast('שגיאה','terr'); }
+}
+
+/* ════════════════════════════════════════
+   OVERRIDE doSend TO USE SERVER
+════════════════════════════════════════ */
+async function doSend(txt){
+  if(!authToken){ showAuth(); return; }
+  updCtx(txt);
+  msgs_hist.push({role:'user', content:txt});
+
+  // Ensure we have a conversation
+  if(!currentConvId){
+    try{
+      const c = await apiPost('/api/conversations', {title: txt.substring(0,40)});
+      currentConvId = c.id;
+    }catch(e){ console.error('Create conv error:', e); }
+  }
+
+  let sys = buildSys();
+  // Add language instruction
+  const langInst = LANGS[currentLang]?.bot_lang_instruction || 'ענה בעברית בלבד.';
+  sys = sys + '\n\nחשוב ביותר — ' + langInst;
+  
+  document.getElementById('snBtn').disabled = true;
+
+  try{
+    const data = await apiPost('/api/chat', {
+      messages: msgs_hist.slice(-16),
+      system: sys,
+      conversation_id: currentConvId,
+      save: true
+    });
+
+    if(data.error) throw new Error(data.error);
+
+    const reply = data.content?.[0]?.text || getFallback(txt);
+    msgs_hist.push({role:'assistant', content:reply});
+    updCtx(reply);
+    const qrs = smartQRs(reply, txt);
+    await addBot(md2html(reply), qrs);
+    loadConversations(); // refresh sidebar
+  }catch(e){
+    console.error('Chat error:', e);
+    await addBot('שגיאה: ' + e.message);
+  }finally{
+    document.getElementById('snBtn').disabled = false;
+  }
+}
+
+/* ════════════════════════════════════════
+   OVERRIDE directUploadAndAnalyze TO USE SERVER
+════════════════════════════════════════ */
+const _origDirectUpload = directUploadAndAnalyze;
+async function directUploadAndAnalyze(e){
+  if(!authToken){ showAuth(); return; }
+  const file = e.target.files[0];
+  if(!file){ toast('לא נבחר קובץ','twarn'); return; }
+
+  let fileType = file.type;
+  if(!fileType){
+    const ext = file.name.split('.').pop().toLowerCase();
+    const map = {pdf:'application/pdf',jpg:'image/jpeg',jpeg:'image/jpeg',png:'image/png',webp:'image/webp'};
+    fileType = map[ext]||'image/jpeg';
+  }
+
+  toast('טוען קובץ...','tok');
+  const reader = new FileReader();
+  reader.onload = async function(ev){
+    const base64 = ev.target.result.split(',')[1];
+    e.target.value = '';
+
+    go('chat');
+    await new Promise(r=>setTimeout(r,300));
+    if(!document.getElementById('msgs').children.length){ initChat(); await new Promise(r=>setTimeout(r,1200)); }
+    if(!currentConvId){
+      try{ const c = await apiPost('/api/conversations',{title:'ניתוח תלוש - '+file.name}); currentConvId=c.id; }
+      catch(e){ console.error(e); }
+    }
+
+    addUM('📎 '+file.name);
+    await addBot('🔍 קורא את התלוש... זה עלול לקחת 15-30 שניות לניתוח מלא.');
+
+    const msgContent = fileType==='application/pdf'
+      ? [{type:'document',source:{type:'base64',media_type:'application/pdf',data:base64}},{type:'text',text:'נתח את תלוש המשכורת שלי לעומק.'}]
+      : [{type:'image',source:{type:'base64',media_type:fileType,data:base64}},{type:'text',text:'נתח את תלוש המשכורת שלי לעומק.'}];
+
+    msgs_hist.push({role:'user', content:msgContent});
+
+    try{
+      const langInst2 = LANGS[currentLang]?.bot_lang_instruction || 'ענה בעברית בלבד.';
+      const data = await apiPost('/api/analyze', {
+        messages: msgs_hist.slice(-4),
+        conversation_id: currentConvId,
+        lang_instruction: langInst2
+      });
+
+      if(data.error) throw new Error(data.error);
+      const reply = data.content?.[0]?.text||'לא הצלחתי לנתח.';
+      msgs_hist.push({role:'assistant', content:reply});
+      updCtx(reply);
+      await addBot(md2html(reply),['כתוב לי מכתב','מה לעשות קודם?','חשב הפרשים שנתיים']);
+      toast('ניתוח הושלם ✓','tok');
+      loadConversations();
+    }catch(err){
+      console.error(err);
+      msgs_hist.pop();
+      await addBot('שגיאה: '+err.message);
+    }
+  };
+  reader.readAsDataURL(file);
+}
+
+/* ════════════════════════════════════════
+   INIT
+════════════════════════════════════════ */
+async function initApp(){
+  loadProfile();
+  initLang();
+
+  if(authToken){
+    try{
+      const me = await apiGet('/api/auth/me');
+      currentUser = me;
+      updateUserUI();
+      await loadUserProfile();
+      await loadConversations();
+      // Don't show auth overlay
+      document.getElementById('authOverlay').style.display = 'none';
+    }catch(e){
+      // Token expired
+      authToken = '';
+      localStorage.removeItem('tc_token');
+      showAuth();
+    }
+  } else {
+    showAuth();
+  }
+}
+
+
+/* ── API KEY MANAGEMENT ── */
+function initKey(){ /* server handles auth */ }
+function showKeyModal(){
+  document.getElementById('keyOverlay').style.display='flex';
+  document.body.style.overflow='hidden';
+}
+function saveKey(){
+  const k=document.getElementById('keyInput').value.trim();
+  if(!k||!k.startsWith('sk-ant')){
+    toast('מפתח לא תקין — חייב להתחיל ב-sk-ant','terr');return;
+  }
+  localStorage.setItem('tc_akey',k);
+  document.getElementById('keyOverlay').style.display='none';
+  document.body.style.overflow='';
+  toast('מפתח נשמר ✓ הבוט מוכן!','tok');
+  if(document.getElementById('pg-chat').classList.contains('on')&&
+     document.getElementById('msgs').children.length===0) initChat();
+}
+function skipKey(){
+  document.getElementById('keyOverlay').style.display='none';
+  document.body.style.overflow='';
+  toast('מצב הדגמה — הבוט לא יענה ללא מפתח','twarn');
+}
+
+/* ── PAYSLIP UPLOAD ── */
+let payslipFileData=null;
+
+function openUploadModal(){
+  document.getElementById('uploadModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeUploadModal(){
+  document.getElementById('uploadModal').classList.remove('open');
+  document.body.style.overflow='';
+  payslipFileData=null;
+  document.getElementById('uploadPreviewArea').classList.remove('show');
+  document.getElementById('payslipFile').value='';
+  const dz=document.getElementById('uploadDrop');
+  if(dz)dz.style.opacity='1';
+}
+function uploadDragOver(e){
+  e.preventDefault();
+  document.getElementById('uploadDrop').classList.add('ov');
+}
+function uploadDropFile(e){
+  e.preventDefault();
+  document.getElementById('uploadDrop').classList.remove('ov');
+  const f=e.dataTransfer.files[0];
+  if(f) processPayslipFile(f);
+}
+function handlePayslipFile(e){
+  console.log('handlePayslipFile called', e.target.files);
+  const f=e.target.files[0];
+  if(f){
+    console.log('File selected:', f.name, f.type, f.size);
+    processPayslipFile(f);
+  } else {
+    console.log('No file selected');
+  }
+}
+function processPayslipFile(file){
+  if(!file){toast('לא נבחר קובץ','twarn');return;}
+  
+  const maxSize=20*1024*1024;
+  if(file.size>maxSize){toast('קובץ גדול מדי — מקסימום 20MB','terr');return;}
+
+  // Accept PDF and images - fix mime type if needed
+  let fileType=file.type;
+  if(!fileType||fileType===''){
+    // Guess from extension
+    const ext=file.name.split('.').pop().toLowerCase();
+    const typeMap={pdf:'application/pdf',jpg:'image/jpeg',jpeg:'image/jpeg',png:'image/png',webp:'image/webp'};
+    fileType=typeMap[ext]||'image/jpeg';
+  }
+  
+  const allowed=['application/pdf','image/jpeg','image/jpg','image/png','image/webp'];
+  const validExt=file.name.match(/\.(pdf|jpg|jpeg|png|webp)$/i);
+  if(!allowed.includes(fileType)&&!validExt){
+    toast('פורמט לא נתמך — השתמש ב-PDF, JPG, PNG','terr');return;
+  }
+
+  toast('טוען קובץ...','tok');
+  
+  const reader=new FileReader();
+  reader.onload=function(e){
+    payslipFileData={
+      name:file.name,
+      size:file.size,
+      type:fileType,
+      data:e.target.result
+    };
+    console.log('payslipFileData set:', payslipFileData.name, payslipFileData.type, 'data length:', payslipFileData.data.length);
+    const sizeStr=file.size>1024*1024
+      ?(file.size/1024/1024).toFixed(1)+' MB'
+      :(file.size/1024).toFixed(0)+' KB';
+    const icon=fileType==='application/pdf'?'📋':'🖼️';
+    document.getElementById('uploadFileInfo').innerHTML=
+      `<span class="upload-file-icon">${icon}</span>
+       <span class="upload-file-name">${file.name}</span>
+       <span class="upload-file-size">${sizeStr}</span>`;
+    document.getElementById('uploadPreviewArea').classList.add('show');
+    document.getElementById('uploadDrop').style.opacity='0.5';
+    toast('קובץ נטען ✓ לחץ לניתוח','tok');
+  };
+  reader.onerror=function(){
+    toast('שגיאה בטעינת הקובץ — נסה שוב','terr');
+  };
+  reader.readAsDataURL(file);
+}
+
+async function analyzePayslip(){
+  console.log('analyzePayslip called, payslipFileData:', payslipFileData);
+  if(!payslipFileData || !payslipFileData.data){
+    toast('אנא בחר קובץ תחילה','twarn');
+    console.error('payslipFileData is null or missing data');
+    return;
+  }
+  closeUploadModal();
+
+  // Always go to chat - analysis happens IN the chat
+  go('chat');
+  await new Promise(r=>setTimeout(r,300));
+  if(document.getElementById('msgs').children.length===0){
+    initChat();
+    await new Promise(r=>setTimeout(r,1200));
+  }
+
+  const akey=localStorage.getItem('tc_akey')||'';
+  if(!akey){showKeyModal();return;}
+
+  // Show user message with file name
+  addUM(`📎 מעלה לניתוח: **${payslipFileData.name}**`);
+
+  const sys=`אתה סוכן AI מומחה לשכר וזכויות עובדי הוראה בישראל — פלטפורמת "תלוש חכם".
+יש לך יכולת מלאה לראות ולנתח תמונות ומסמכי PDF. כאשר מועלה תלוש — קרא אותו ישירות.
+${profile.contract?`פרופיל המורה: חוזה ${profile.contract}, ותק ${profile.seniority} שנים, תואר ${profile.degree||'לא ידוע'}.`:''}
+${ctx.contract?`הקשר שיחה: חוזה ${ctx.contract}${ctx.sen?', ותק '+ctx.sen:''}.`:''}
+
+נתח את תלוש המשכורת שהועלה. עבור על כל שורה בתלוש וספק:
+
+**שלב 1 — זיהוי:**
+- סוג החוזה (אופק חדש / עוז לתמורה / אחר)
+- שנות ותק
+- שכר ברוטו ונטו
+
+**שלב 2 — בדיקת כל רכיב:**
+לכל רכיב בתלוש — ציין ✅ תקין / ⚠️ לבדיקה / ❌ שגוי עם הסכום הנכון:
+- שכר בסיס (לפי ותק וחוזה)
+- תוספות תואר
+- שעות מילוי מקום ותמחורן
+- תוספת כיתת אם (אם יש)
+- קרן פנסיה (צריך 20.83%)
+- קרן השתלמות (צריך 7.5% מעסיק)
+- ניכויי מס הכנסה
+
+**שלב 3 — סיכום ממצאים:**
+- מה תקין
+- מה שגוי ובכמה
+- פוטנציאל גבייה חודשי ושנתי
+- צעדים מומלצים
+
+אחרי הניתוח — המשך לשוחח עם המורה על ממצאים, שאל שאלות הבהרה, וכתוב מכתבים לפי הצורך.
+ענה בעברית ברורה ומפורטת.`;
+
+  // Build message content with file
+  const base64=payslipFileData.data.split(',')[1];
+  const mediaType=payslipFileData.type||'image/jpeg';
+  const isImage=mediaType.startsWith('image/');
+  const isPDF=mediaType==='application/pdf';
+  
+  let msgContent;
+  if(isPDF){
+    // PDF as document block
+    msgContent=[
+      {
+        type:'document',
+        source:{type:'base64',media_type:'application/pdf',data:base64}
+      },
+      {
+        type:'text',
+        text:'זהו תלוש המשכורת שלי בפורמט PDF. אנא נתח אותו לפי ההוראות — בדוק כל רכיב ואמור לי מה נכון ומה לא.'
+      }
+    ];
+  } else {
+    // Image (JPG/PNG/WEBP)
+    msgContent=[
+      {
+        type:'image',
+        source:{
+          type:'base64',
+          media_type:mediaType,
+          data:base64
+        }
+      },
+      {
+        type:'text',
+        text:'זהו תלוש המשכורת שלי. אנא נתח אותו לפי ההוראות — בדוק כל רכיב ואמור לי מה נכון ומה לא.'
+      }
+    ];
+  }
+
+  // Add to shared chat history
+  msgs_hist.push({role:'user',content:msgContent});
+
+  try{
+    const r=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'x-api-key':akey,
+        'anthropic-version':'2023-06-01',
+        'anthropic-dangerous-direct-browser-access':'true'
+      },
+      body:JSON.stringify({
+        model:'claude-sonnet-4-6',
+        max_tokens:4000,
+        system:sys,
+        messages:msgs_hist.slice(-6)
+      })
+    });
+
+    if(!r.ok){
+      const e=await r.json();
+      throw new Error(e.error?.message||'שגיאת API');
+    }
+
+    const d=await r.json();
+    const reply=d.content?.[0]?.text||'לא הצלחתי לנתח את התלוש. נסה שוב.';
+    
+    // Add to shared history — now bot knows the payslip content for future questions
+    msgs_hist.push({role:'assistant',content:reply});
+    
+    // Update context from analysis
+    updCtx(reply);
+    
+    await addBot(md2html(reply),[
+      'כתוב לי מכתב לאחראי שכר',
+      'מה לעשות קודם?',
+      'חשב כמה מגיע לי השנה'
+    ]);
+    
+    toast('ניתוח הושלם ✓','tok');
+    
+  }catch(err){
+    console.error('Analyze error:',err);
+    msgs_hist.pop(); // Remove failed message
+    await addBot(`שגיאה בניתוח: ${err.message}. נסה שוב.`);
+  }
+}
+
+
+
+
+
+/* ── IMAGE COMPRESSION ── */
+async function compressImage(base64, mimeType, maxWidth=1200){
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      let w = img.width, h = img.height;
+      if(w > maxWidth){ h = Math.round(h * maxWidth / w); w = maxWidth; }
+      canvas.width = w; canvas.height = h;
+      canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+      const compressed = canvas.toDataURL(mimeType==='image/png'?'image/png':'image/jpeg', 0.82);
+      resolve(compressed.split(',')[1]);
+    };
+    img.src = `data:${mimeType};base64,${base64}`;
+  });
+}
+
+/* ── DIRECT UPLOAD FROM CHAT ── */
+function directUploadAndAnalyze(e){
+  const file = e.target.files[0];
+  if(!file){ toast('לא נבחר קובץ','twarn'); return; }
+  
+  console.log('Direct upload:', file.name, file.type, file.size);
+  toast('טוען קובץ...','tok');
+  
+  // Detect mime type
+  let fileType = file.type;
+  if(!fileType || fileType === ''){
+    const ext = file.name.split('.').pop().toLowerCase();
+    const map = {pdf:'application/pdf',jpg:'image/jpeg',jpeg:'image/jpeg',png:'image/png',webp:'image/webp'};
+    fileType = map[ext] || 'image/jpeg';
+  }
+  
+  const reader = new FileReader();
+  reader.onload = async function(ev){
+    const fileData = {
+      name: file.name,
+      size: file.size,
+      type: fileType,
+      data: ev.target.result
+    };
+    console.log('File loaded OK:', fileData.name, 'data length:', fileData.data.length);
+    
+    // Reset input for next use
+    e.target.value = '';
+    
+    // Go to chat
+    go('chat');
+    await new Promise(r => setTimeout(r, 300));
+    if(document.getElementById('msgs').children.length === 0){
+      initChat();
+      await new Promise(r => setTimeout(r, 1200));
+    }
+    
+    const akey = localStorage.getItem('tc_akey') || '';
+    if(!akey){ showKeyModal(); return; }
+    
+    // Show user message
+    addUM('📎 ' + fileData.name + ' — מנתח...');
+    
+    const sys = `אתה סוכן AI מומחה לשכר וזכויות עובדי הוראה בישראל.
+יש לך יכולת מלאה לראות תמונות ומסמכי PDF.
+${profile.contract ? 'פרופיל: חוזה ' + profile.contract + ', ותק ' + profile.seniority + ' שנים.' : ''}
+נתח את תלוש המשכורת לעומק:
+1. זהה חוזה, ותק, שכר בסיס
+2. בדוק כל רכיב — שכר, תוספות, הפרשות, מס
+3. השווה לטבלאות: אופק חדש ₪7,800-₪16,200 / עוז לתמורה ₪8,200-₪17,500
+4. ציין ✅ תקין / ❌ שגוי עם הסכומים הנכונים
+5. חשב פוטנציאל גבייה
+ענה בשפה: ${LANGS[currentLang]?.bot_lang_instruction || 'ענה בעברית.'}.`;
+
+    // Build content with file — compress images for speed
+    let base64 = fileData.data.split(',')[1];
+    let msgContent;
+    if(fileData.type === 'application/pdf'){
+      msgContent = [
+        {type:'document', source:{type:'base64', media_type:'application/pdf', data:base64}},
+        {type:'text', text:'זהו תלוש המשכורת שלי. נתח אותו לעומק.'}
+      ];
+    } else {
+      // Compress image before sending
+      try{ base64 = await compressImage(base64, fileData.type); }
+      catch(e){ console.log('Compression skipped:', e); }
+      msgContent = [
+        {type:'image', source:{type:'base64', media_type:'image/jpeg', data:base64}},
+        {type:'text', text:'זהו תלוש המשכורת שלי. נתח אותו לעומק.'}
+      ];
+    }
+    
+    msgs_hist.push({role:'user', content:msgContent});
+    console.log('Sending to API, msgs_hist length:', msgs_hist.length);
+    
+    try{
+      const r = await fetch('https://api.anthropic.com/v1/messages',{
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json',
+          'x-api-key': akey,
+          'anthropic-version':'2023-06-01',
+          'anthropic-dangerous-direct-browser-access':'true'
+        },
+        body: JSON.stringify({
+          model:'claude-sonnet-4-6',
+          max_tokens:4000,
+          system:sys,
+          messages:msgs_hist.slice(-4)
+        })
+      });
+      
+      console.log('API response status:', r.status);
+      const d = await r.json();
+      console.log('API response:', d);
+      
+      if(d.error){ throw new Error(d.error.message); }
+      
+      const reply = d.content?.[0]?.text || 'לא הצלחתי לנתח. נסה שוב.';
+      msgs_hist.push({role:'assistant', content:reply});
+      updCtx(reply);
+      await addBot(md2html(reply), ['כתוב לי מכתב','מה לעשות קודם?','חשב הפרשים שנתיים']);
+      toast('ניתוח הושלם ✓','tok');
+      
+    } catch(err){
+      console.error('API Error:', err);
+      msgs_hist.pop();
+      await addBot('שגיאה: ' + err.message + '. בדוק שה-API Key תקין ונסה שוב.');
+    }
+  };
+  
+  reader.onerror = function(err){
+    console.error('FileReader error:', err);
+    toast('שגיאה בקריאת הקובץ','terr');
+  };
+  
+  reader.readAsDataURL(file);
+}
+
+function azDropRedirect(e){
+  e.preventDefault();
+  document.getElementById('dz').classList.remove('ov');
+  const file=e.dataTransfer.files[0];
+  if(!file)return;
+  const reader=new FileReader();
+  reader.onload=function(ev){
+    payslipFileData={name:file.name,size:file.size,type:file.type,data:ev.target.result};
+    analyzePayslip();
+  };
+  reader.readAsDataURL(file);
+}
+
+function azRedirect(e){
+  const file=e.target.files[0];
+  if(!file)return;
+  // Read the file and open the upload modal in chat context
+  const reader=new FileReader();
+  reader.onload=function(ev){
+    payslipFileData={name:file.name,size:file.size,type:file.type,data:ev.target.result};
+    // Redirect to chat and analyze
+    analyzePayslip();
+  };
+  reader.readAsDataURL(file);
+}
+
+function initChatPromise(){
+  return new Promise(res=>{
+    initChat();setTimeout(res,800);
+  });
+}
+
+</script>
+
+<!-- API KEY MODAL (disabled - using server auth) -->
+<div class="key-overlay" id="keyOverlay" style="display:none">
+  <div class="key-modal">
+    <div style="font-size:2rem;margin-bottom:.8rem">🔑</div>
+    <h2>הכנס את מפתח ה-API שלך</h2>
+    <p>כדי להפעיל את הבוט החכם, נדרש מפתח API של Anthropic.<br>
+    המפתח נשמר <strong>רק בדפדפן שלך</strong> ולא עובר לשום שרת.</p>
+    <div class="key-bar" onclick="window.open('https://console.anthropic.com/settings/keys','_blank')">
+      <span>🔗</span>
+      <span class="key-bar-txt">קבל מפתח חינמי מ-console.anthropic.com</span>
+      <span>←</span>
+    </div>
+    <input class="key-inp" id="keyInput" type="password" 
+      placeholder="sk-ant-api03-..." 
+      onkeydown="if(event.key==='Enter')saveKey()">
+    <button class="key-submit" onclick="saveKey()">⚡ התחל להשתמש</button>
+    <div class="key-note">
+      המפתח נשמר רק ב-localStorage של הדפדפן שלך.<br>
+      לא נשלח לשרתים. <a href="#" onclick="skipKey()">דלג (מצב הדגמה)</a>
+    </div>
+  </div>
+</div>
+
+<!-- PAYSLIP UPLOAD MODAL -->
+<div class="upload-modal" id="uploadModal">
+  <div class="upload-box">
+    <div class="upload-box-head">
+      <span style="font-size:1.3rem">📄</span>
+      <h3>העלאת תלוש משכורת לניתוח</h3>
+      <button style="background:rgba(255,255,255,.06);border:none;color:var(--white);
+        width:30px;height:30px;border-radius:7px;cursor:pointer;font-size:1rem"
+        onclick="closeUploadModal()">✕</button>
+    </div>
+
+    <!-- Hidden file input -->
+    <input type="file" id="payslipFile" 
+      accept=".pdf,.jpg,.jpeg,.png,.webp,image/*,application/pdf"
+      style="display:none"
+      onchange="handlePayslipFile(event)">
+
+    <!-- Drop zone - click triggers file input -->
+    <div class="upload-drop" id="uploadDrop"
+      ondragover="uploadDragOver(event)"
+      ondrop="uploadDropFile(event)"
+      onclick="document.getElementById('payslipFile').click()"
+      style="cursor:pointer">
+      <div class="upload-drop-ic">📤</div>
+      <div class="upload-drop-t">לחץ לבחירת קובץ או גרור לכאן</div>
+      <div class="upload-drop-s">PDF, JPG, PNG, WEBP — עד 20MB</div>
+    </div>
+
+    <!-- File preview - shown after selection -->
+    <div class="upload-preview-area" id="uploadPreviewArea">
+      <div class="upload-file-info" id="uploadFileInfo"></div>
+      <button class="upload-analyze-btn" id="analyzeBtn" onclick="analyzePayslip()">
+        🔍 נתח תלוש עם AI
+      </button>
+    </div>
+
+    <div class="upload-footer">
+      <button class="upload-cancel" onclick="closeUploadModal()">ביטול</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- AUTH MODAL -->
+<div class="auth-overlay" id="authOverlay">
+  <div class="auth-box">
+    <div class="auth-head">
+      <div class="auth-logo">ת</div>
+      <h2>תלוש חכם</h2>
+      <p>התחבר/י כדי לשמור שיחות ומסקנות</p>
+    </div>
+    <div class="auth-tabs">
+      <button class="auth-tab on" id="loginTab" onclick="switchAuthTab('login')">התחברות</button>
+      <button class="auth-tab" id="registerTab" onclick="switchAuthTab('register')">הרשמה</button>
+    </div>
+    <div class="auth-body">
+      <div class="auth-err" id="authErr"></div>
+      
+      <!-- Login Form -->
+      <div id="loginForm">
+        <div class="auth-field">
+          <label>אימייל</label>
+          <input class="auth-inp" id="loginEmail" type="email" placeholder="your@email.com" onkeydown="if(event.key==='Enter')doLogin()">
+        </div>
+        <div class="auth-field">
+          <label>סיסמה</label>
+          <input class="auth-inp" id="loginPass" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()">
+        </div>
+        <button class="auth-btn" id="loginBtn" onclick="doLogin()">⚡ התחבר/י</button>
+      </div>
+
+      <!-- Register Form -->
+      <div id="registerForm" style="display:none">
+        <div class="auth-field">
+          <label>שם מלא</label>
+          <input class="auth-inp" id="regName" type="text" placeholder="ישראלה ישראלי" style="direction:rtl">
+        </div>
+        <div class="auth-field">
+          <label>אימייל</label>
+          <input class="auth-inp" id="regEmail" type="email" placeholder="your@email.com" onkeydown="if(event.key==='Enter')doRegister()">
+        </div>
+        <div class="auth-field">
+          <label>סיסמה (לפחות 6 תווים)</label>
+          <input class="auth-inp" id="regPass" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')doRegister()">
+        </div>
+        <button class="auth-btn" id="registerBtn" onclick="doRegister()">✨ צור/י חשבון חינמי</button>
+      </div>
+      
+      <div class="auth-note">הנתונים שלך שמורים בצורה מאובטחת ופרטית לחלוטין</div>
+    </div>
+  </div>
+</div>
+
+<!-- USER MENU (replaces nav-cta) -->
+<div class="user-menu-wrap" id="userMenuWrap" style="display:none">
+  <button class="user-btn" onclick="toggleUserMenu()" id="userMenuBtn">
+    <span>👤</span><span id="userNameBtn">משתמש</span><span>▾</span>
+  </button>
+  <div class="user-dropdown" id="userDropdown">
+    <button class="ud-item" onclick="openPro();closeUserMenu()">👤 הפרופיל שלי</button>
+    <button class="ud-item" onclick="go('rights');closeUserMenu()">⚖️ זכויות</button>
+    <hr class="ud-divider">
+    <button class="ud-item danger" onclick="doLogout()">🚪 התנתק/י</button>
+  </div>
+</div>
+
+</body>
+</html>
